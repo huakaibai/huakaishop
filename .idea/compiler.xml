@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="huakaishopapiweixindto" />
+        <module name="huakai-shop-basics-springcloud-gateway" />
+        <module name="huakai-shop-basics-springcloud-eureka" />
+        <module name="huakaishopcommoncore" />
+        <module name="huakaishopbasiscs" />
+        <module name="huakaishopserviceapiweixin" />
+        <module name="huakaishopapimemberdto" />
+        <module name="huakaishopserviceapimember" />
+        <module name="huakai-shop-portal-web" />
+        <module name="huakaishopserviceimplweixin" />
+        <module name="huakaishopserviceimplmember" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="huakaishopapientity" target="1.8" />
+      <module name="huakaishopapiweixinentity" target="1.8" />
+      <module name="huakaishopbasicsspringcloudeureka" target="1.8" />
+      <module name="huakaishopbasicsspringcloudgateway" target="1.8" />
+      <module name="huakaishopportalweb" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="huakai-shop-basics-springcloud-eureka" options="-parameters" />
+      <module name="huakai-shop-basics-springcloud-gateway" options="-parameters" />
+      <module name="huakai-shop-portal-web" options="-parameters" />
+      <module name="huakaishop" options="-parameters" />
+      <module name="huakaishopapientity" options="-parameters" />
+      <module name="huakaishopapimemberdto" options="-parameters" />
+      <module name="huakaishopapiweixindto" options="-parameters" />
+      <module name="huakaishopapiweixinentity" options="-parameters" />
+      <module name="huakaishopbasicsspringcloudeureka" options="-parameters" />
+      <module name="huakaishopbasicsspringcloudgateway" options="-parameters" />
+      <module name="huakaishopbasiscs" options="-parameters" />
+      <module name="huakaishopcommon" options="-parameters" />
+      <module name="huakaishopcommoncore" options="-parameters" />
+      <module name="huakaishopportal" options="-parameters" />
+      <module name="huakaishopportalweb" options="-parameters" />
+      <module name="huakaishopserviceapi" options="-parameters" />
+      <module name="huakaishopserviceapimember" options="-parameters" />
+      <module name="huakaishopserviceapiweixin" options="-parameters" />
+      <module name="huakaishopserviceimpl" options="-parameters" />
+      <module name="huakaishopserviceimplmember" options="-parameters" />
+      <module name="huakaishopserviceimplweixin" options="-parameters" />
+    </option>
+  </component>
+</project>
