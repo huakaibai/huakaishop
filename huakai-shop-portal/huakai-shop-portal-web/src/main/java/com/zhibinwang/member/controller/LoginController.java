@@ -47,7 +47,7 @@ public class LoginController extends BaseWebController {
 	 * 
 	 * @return
 	 */
-	@GetMapping("/login.html")
+	@GetMapping("/login")
 	public String getLogin() {
 		return MEMBER_LOGIN_PAGE;
 	}
@@ -57,7 +57,7 @@ public class LoginController extends BaseWebController {
 	 * 
 	 * @return
 	 */
-	@PostMapping("/login.html")
+	@PostMapping("/login")
 	public String postLogin(@Validated  LoginVo loginVo, BindingResult bindingResult, HttpServletRequest request, HttpServletResponse response, Model model) {
 
 		//判断参数校验错误
@@ -92,7 +92,7 @@ public class LoginController extends BaseWebController {
 		return REDIRECT_INDEX;
 	}
 
-	@PostMapping("/exit.html")
+	@GetMapping("/exit")
 	public String exit(HttpServletRequest request,HttpServletResponse response){
 		String token = CookieUtils.getCookieValue(request, Constants.HUAKAI_LOGIN_PC_COOKIE_KEY);
 		if (StringUtils.isNotBlank(token)){

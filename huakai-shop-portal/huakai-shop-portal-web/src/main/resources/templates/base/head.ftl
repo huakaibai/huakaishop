@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>花开商城-首页</title>
+  <title>蚂蚁商城-首页</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="../res/layui/css/layui.css">
   <link rel="stylesheet" href="../res/static/css/index.css">
@@ -13,8 +13,14 @@
   <div class="layui-container">
     <div class="house-nav">
       <span class="layui-breadcrumb" lay-separator="|">
-        <a href="login.html">登录</a>
-        <a href="">我的订单</a>
+     <#if desensMobile??>
+         <a href="">${desensMobile}</a>
+       <a href="">我的订单</a>
+       <a href="/exit">退出</a>
+      <#else >
+          <a href="login">登录</a>
+     </#if>
+     
         <a href="http://wpa.qq.com/msgrd?v=3&uin=483966038&site=qq&menu=yes">在线客服</a>
       </span>
       <span class="layui-breadcrumb house-breadcrumb-icon" lay-separator=" ">

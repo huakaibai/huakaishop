@@ -1,0 +1,47 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8100/eureka
+huakaibai:
+  weixin:
+    default:
+      registration:
+        code:
+          message: 您的消息，我们已经收到,会及时回复给您的!
+    registration:
+      code:
+        message: 您的注册码为:%s,请及时使用
+logging:
+  level:
+    com:
+      github:
+        binarywang:
+          demo:
+            wx:
+              mp: DEBUG
+    me:
+      chanjar:
+        weixin: DEBUG
+    org:
+      springframework:
+        web: INFO
+server:
+  port: 8200
+spring:
+  application:
+    name: app-huakai-weixin
+  redis:
+    host: 127.0.0.1
+
+    port: 6379
+    jedis:
+      pool:
+        max-idle: 100
+        max-wait:
+        min-idle: 1
+wx:
+  mp:
+    configs:
+      -   appId: wx0d39a74b72fa49ae
+          secret: a5198f35ce87e53e46d8fee010eff5c1
+          token: huakaibai

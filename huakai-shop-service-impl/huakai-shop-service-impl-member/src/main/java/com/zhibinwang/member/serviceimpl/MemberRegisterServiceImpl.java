@@ -49,8 +49,9 @@ public class MemberRegisterServiceImpl extends BaseApiService<JSONObject>  imple
             return setResultError(Constants.HTTP_RES_CODE_EXISTMOBILE_203,"手机号已经被注册");
         }*/
 
-         DigestUtil.md5Hex(userInputDTO.getPassword());
+        String s = DigestUtil.md5Hex(userInputDTO.getPassword());
         UserDo userDo = HuakaiBeanUtils.dtoToDo(userInputDTO, UserDo.class);
+        userDo.setPassword(s);
         int register = userMapper.register(userDo);
         return register>0?setResultSuccess("注册成功"):setResultError("注册失败");
     }

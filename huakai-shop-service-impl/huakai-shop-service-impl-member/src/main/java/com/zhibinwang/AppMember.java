@@ -15,7 +15,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  **/
 @SpringCloudApplication
 @EnableFeignClients
-@EnableApolloConfig
+//@EnableApolloConfig
 @MapperScan(basePackages={"com.zhibinwang.member.mapper"})
 public class AppMember {
     public static void main(String[] args) {

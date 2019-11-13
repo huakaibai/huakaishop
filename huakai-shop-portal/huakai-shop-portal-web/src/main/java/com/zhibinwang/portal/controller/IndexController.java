@@ -35,7 +35,13 @@ public class IndexController {
 		if (StringUtils.isNotBlank(cookieValue)){
 			//cookie值不为空，则根据token查询用户信息
 			BaseResponse<UserOutputDTO> user = memberService.getInfoByToken(cookieValue);
-
+			UserOutputDTO userData = user.getData();
+			if (userData != null){
+				String mobile = userData.getMobile();
+				// 对手机号码实现脱敏
+				String desensMobile = mobile.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2");
+				model.addAttribute("desensMobile", desensMobile);
+			}
 
 		}
 		return PO_INDEX;
@@ -46,7 +52,7 @@ public class IndexController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/index.html")
+	@RequestMapping("/index")
 	public String indexHtml(HttpServletRequest request, Model model) {
 		return index(request,model);
 	}
