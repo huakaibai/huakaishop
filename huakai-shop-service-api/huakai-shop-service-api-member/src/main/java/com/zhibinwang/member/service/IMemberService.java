@@ -35,4 +35,11 @@ public interface IMemberService {
             @ApiImplicitParam(paramType = "query", name = "phone", dataType = "String", required = true, value = "用户号码")
           })
     BaseResponse<UserOutputDTO> existMobile(   @RequestParam("phone") @NotEmpty(message = "手机号不能为空") @Phone(message = "手机号不合法") String phone);
+
+    @PostMapping("/getInfoByToken")
+    @ApiOperation(value = "获取用户信息根据token")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", name = "token", dataType = "String", required = true, value = "Token信息")
+    })
+    BaseResponse<UserOutputDTO> getInfoByToken(@RequestParam("token") @NotEmpty( message = "token不能为空") String token);
 }

@@ -22,6 +22,7 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 /**
@@ -127,5 +128,15 @@ public class MemberLoginServiceImpl extends BaseApiService<JSONObject> implement
         }
 
 
+    }
+
+
+    public BaseResponse<JSONObject> exit( String token) {
+        //1，现根据token更新数据库
+       userTokenMapper.updateTokenAvailability(token);
+       // 2.直接删除token即可
+        generateToken.removeToken(token);
+
+        return setResultSuccess("注销成功");
     }
 }

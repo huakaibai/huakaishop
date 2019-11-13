@@ -2,6 +2,8 @@ package com.zhibinwang;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @author 花开
@@ -9,6 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @desc
  **/
 @SpringBootApplication
+@EnableEurekaClient
+@EnableFeignClients
 public class AppPortalWeb {
 
     public static void main(String[] args) {

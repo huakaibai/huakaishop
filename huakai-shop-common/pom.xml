@@ -13,7 +13,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>huakai-shop-common-core</module>
+        <module>huakai-shop-web-common</module>
     </modules>
+
 
 
 </project>
