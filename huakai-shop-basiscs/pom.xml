@@ -16,6 +16,6 @@
     </modules>
 
     <artifactId>huakai-shop-basiscs</artifactId>
-
+    <packaging>pom</packaging>
 
 </project>

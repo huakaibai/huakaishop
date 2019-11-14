@@ -1,0 +1,26 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+target
+huakai-shop-api-dto/huakai-shop-api-member-dto/src/main/resources/
+huakai-shop-api-dto/huakai-shop-api-member-dto/src/test/
+huakai-shop-api-dto/huakai-shop-api-weixin-dto/src/
+huakai-shop-basiscs/huakai-shop-basics-springcloud-eureka/src/test/
+huakai-shop-basiscs/huakai-shop-basics-springcloud-gateway/src/test/
+huakai-shop-common/huakai-shop-common-core/src/main/resources/
+huakai-shop-common/huakai-shop-common-core/src/test/
+huakai-shop-portal/huakai-shop-portal-web/src/test/
+huakai-shop-service-api/huakai-shop-service-api-member/src/main/resources/
+huakai-shop-service-api/huakai-shop-service-api-member/src/test/
+huakai-shop-service-api/huakai-shop-service-api-weixin/src/main/resources/
+huakai-shop-service-api/huakai-shop-service-api-weixin/src/test/
+huakai-shop-service-impl/huakai-shop-service-impl-member/src/test/
+huakai-shop-service-impl/huakai-shop-service-impl-weixin/src/test/
+qqconnect.log
+qqconnect.log.1
