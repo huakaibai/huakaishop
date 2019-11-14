@@ -80,6 +80,17 @@
 				<span
 					style="color: red; font-size: 20px; font-weight: bold; font-family: '楷体', '楷体_GB2312';">${error!''}</span>
 				<button class="layui-btn"  style="margin-top: 5px;" lay-submit lay-filter="user-login">登录</button>
+				<div class="load-zhuce-footer">
+					<div class="line"></div>
+					<!-- 弹框底部 -->
+
+					<a href="/qqAuth"  target="_blank"  class="load-qq"><img
+								src="../res/static/img/QQ@2x.png"/><br><span>QQ登录</span></a>
+					<a href="#" class="logo-weixin"><img
+								src="/static/imgages/index-img/WEIXIN@2x.png"/><br><span>微信登录</span></a>
+					<div class="line">
+					</div>
+				</div>
 			</div>
 	</div>
 	</form>
