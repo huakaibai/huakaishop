@@ -40,4 +40,7 @@ public class UserLoginInpDTO {
 
 	private String deviceInfor;
 
+	@ApiModelProperty(value = "qq联合登录id")
+	private String qqOpenId;
+
 }

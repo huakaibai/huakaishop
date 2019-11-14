@@ -44,4 +44,6 @@ public interface Constants {
 	// 登陆超时时间 有效期 90天
 	Long MEMBRE_LOGIN_TOKEN_TIME = 77776000L;
 
+
+
 }

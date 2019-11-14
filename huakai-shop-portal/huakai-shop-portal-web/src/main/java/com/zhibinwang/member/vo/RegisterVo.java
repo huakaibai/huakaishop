@@ -34,6 +34,8 @@ public class RegisterVo {
 	 */
 	@NotBlank(message = "注册码不能为空!")
 	private String registCode;
+
+	private String qqOpenid;
 /*
 
  图形验证码

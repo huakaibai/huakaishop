@@ -1,5 +1,6 @@
 package com.zhibinwang.member.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zhibinwang.base.BaseResponse;
 import com.zhibinwang.core.validate.Phone;
 import com.zhibinwang.member.output.dto.UserOutputDTO;
@@ -42,4 +43,7 @@ public interface IMemberService {
             @ApiImplicitParam(paramType = "query", name = "token", dataType = "String", required = true, value = "Token信息")
     })
     BaseResponse<UserOutputDTO> getInfoByToken(@RequestParam("token") @NotEmpty( message = "token不能为空") String token);
+
+
+
 }

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 /**
@@ -69,8 +70,52 @@ public class MemberLoginServiceImpl extends BaseApiService<JSONObject> implement
         if (user == null){
             return setResultError("用户名或密码不正确");
         }
-        //3.根据用户id查询token
+        //如果openId不为空绑定openId
+        if (StringUtils.isNotBlank(userLoginInpDTO.getQqOpenId())){
+            userMapper.updateQqOpenId(user.getUserId(),userLoginInpDTO.getQqOpenId());
+        }
         UserTokenDo userTokenDo = userTokenMapper.selectByUserIdAndLoginType(user.getUserId(), userLoginInpDTO.getLoginType());
+
+        return getJsonObjectBaseResponse(user,userTokenDo,userLoginInpDTO.getLoginType(),userLoginInpDTO.getDeviceInfor());
+
+
+    }
+
+
+
+    public BaseResponse<JSONObject> exit( String token) {
+        //1，现根据token更新数据库
+       userTokenMapper.updateTokenAvailability(token);
+       // 2.直接删除token即可
+        generateToken.removeToken(token);
+
+        return setResultSuccess("注销成功");
+    }
+
+    public BaseResponse<JSONObject> findByqqOpenId(@NotEmpty(message = "openId不能为空") String openId, String loginType, String deviceInfo) {
+        //根据qqopenid 获取用户
+        UserDo userDo = userMapper.findByQQOpenid(openId);
+        if (userDo == null){
+            return setResultError(Constants.HTTP_RES_CODE_EXISTMOBILE_203,"未绑定用户");
+        }
+
+        //用户存在则自动绑定用户信息
+        UserTokenDo userTokenDo = userTokenMapper.selectByUserIdAndLoginType(userDo.getUserId(), loginType);
+
+        return getJsonObjectBaseResponse(userDo,userTokenDo,loginType,deviceInfo);
+    }
+
+
+    /**
+     * 防止代码重复做的优化用于普通登录和qq联合登录
+     * @param user
+     * @param userTokenDo
+     * @param loginType
+     * @param deviceInfo
+     * @return
+     */
+    private BaseResponse<JSONObject> getJsonObjectBaseResponse(UserDo user,UserTokenDo userTokenDo, String loginType, String deviceInfo) {
+        //3.根据用户id查询token
         TransactionStatus transactionStatus = null;
 
         try {
@@ -94,12 +139,12 @@ public class MemberLoginServiceImpl extends BaseApiService<JSONObject> implement
             }
 
             //5 生成新的token插入缓存
-            String token = generateToken.createToken(Constants.MEMBER_TOKEN_KEYPREFIX + userLoginInpDTO.getLoginType(), user.getUserId() + "", Constants.TOKEN_MEMBER_TIME);
+            String token = generateToken.createToken(Constants.MEMBER_TOKEN_KEYPREFIX + loginType, user.getUserId() + "", Constants.TOKEN_MEMBER_TIME);
 
             //6 存入数据库中
             UserTokenDo newToken = new UserTokenDo();
-            newToken.setDeviceInfor(userLoginInpDTO.getDeviceInfor());
-            newToken.setLoginType(userLoginInpDTO.getLoginType());
+            newToken.setDeviceInfor(deviceInfo);
+            newToken.setLoginType(loginType);
             newToken.setToken(token);
             newToken.setUserId(user.getUserId());
             newToken.setIsAvailability(0L);
@@ -126,17 +171,6 @@ public class MemberLoginServiceImpl extends BaseApiService<JSONObject> implement
             return setResultError("系统错误!");
 
         }
-
-
     }
 
-
-    public BaseResponse<JSONObject> exit( String token) {
-        //1，现根据token更新数据库
-       userTokenMapper.updateTokenAvailability(token);
-       // 2.直接删除token即可
-        generateToken.removeToken(token);
-
-        return setResultSuccess("注销成功");
-    }
 }

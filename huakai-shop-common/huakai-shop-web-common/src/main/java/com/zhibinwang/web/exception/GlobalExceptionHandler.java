@@ -4,7 +4,7 @@ package com.zhibinwang.web.exception;
 import com.alibaba.fastjson.JSONObject;
 import com.zhibinwang.base.BaseApiService;
 import com.zhibinwang.base.BaseResponse;
-import com.zhibinwang.constants.Constants;
+import com.zhibinwang.constants.WebConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
@@ -39,7 +39,7 @@ public class GlobalExceptionHandler {
 		FieldError fieldError = ex.getFieldError();
 		sb.append(fieldError.getDefaultMessage());
 
-		return setResultError(Constants.HTTP_RES_CODE_PARAMETERROR_204,sb.toString());
+		return setResultError(WebConstants.HTTP_RES_CODE_PARAMETERROR_204,sb.toString());
 	}
 
 	@ExceptionHandler(ConstraintViolationException.class)
@@ -50,7 +50,7 @@ public class GlobalExceptionHandler {
 			sb.append(constraintViolation.getMessage());
 		}
 		System.out.println(sb.toString());
-		return setResultError(Constants.HTTP_RES_CODE_PARAMETERROR_204,sb.toString());
+		return setResultError(WebConstants.HTTP_RES_CODE_PARAMETERROR_204,sb.toString());
 	}
 }
 */

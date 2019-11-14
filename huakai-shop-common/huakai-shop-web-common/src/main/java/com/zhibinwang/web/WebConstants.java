@@ -5,7 +5,11 @@ package com.zhibinwang.web;
  * @create 2019-11-13 11:25
  * @desc web常量
  **/
-public interface Constants {
+public interface WebConstants {
 
     String HUAKAI_LOGIN_PC_COOKIE_KEY = "huakai_login_pc_cookie_key";
+    // 用户信息不存在
+    Integer HTTP_RES_CODE_EXISTMOBILE_203 = 203;
+
+    String LOGIN_QQ_OPENID = "loginQqOpenId";
 }

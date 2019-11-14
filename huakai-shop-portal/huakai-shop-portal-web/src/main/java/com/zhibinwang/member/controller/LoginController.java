@@ -7,11 +7,10 @@ import com.zhibinwang.core.token.LoginType;
 import com.zhibinwang.member.feign.MemberLoginServiceFiengClient;
 import com.zhibinwang.member.input.dto.UserLoginInpDTO;
 import com.zhibinwang.member.vo.LoginVo;
-import com.zhibinwang.web.Constants;
+import com.zhibinwang.web.WebConstants;
 import com.zhibinwang.web.bean.HuakaiBeanUtils;
 import com.zhibinwang.web.code.RandomValidateCodeUtil;
 import com.zhibinwang.web.cookie.CookieUtils;
-import net.bytebuddy.implementation.auxiliary.AuxiliaryType;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController extends BaseWebController {
@@ -86,7 +84,7 @@ public class LoginController extends BaseWebController {
 			return MEMBER_LOGIN_PAGE;
 		}
 		//设置cookie
-		CookieUtils.setCookie(request,response, Constants.HUAKAI_LOGIN_PC_COOKIE_KEY,login.getData().getString("token"));
+		CookieUtils.setCookie(request,response, WebConstants.HUAKAI_LOGIN_PC_COOKIE_KEY,login.getData().getString("token"));
 
 		//返回首页
 		return REDIRECT_INDEX;
@@ -94,12 +92,12 @@ public class LoginController extends BaseWebController {
 
 	@GetMapping("/exit")
 	public String exit(HttpServletRequest request,HttpServletResponse response){
-		String token = CookieUtils.getCookieValue(request, Constants.HUAKAI_LOGIN_PC_COOKIE_KEY);
+		String token = CookieUtils.getCookieValue(request, WebConstants.HUAKAI_LOGIN_PC_COOKIE_KEY);
 		if (StringUtils.isNotBlank(token)){
 			//调用member服务注销登录
 			memberLoginServiceFiengClient.exit(token);
 			//删除cookie
-			CookieUtils.deleteCookie(request,response,Constants.HUAKAI_LOGIN_PC_COOKIE_KEY);
+			CookieUtils.deleteCookie(request,response, WebConstants.HUAKAI_LOGIN_PC_COOKIE_KEY);
 		}
 		return REDIRECT_INDEX;
 	}
