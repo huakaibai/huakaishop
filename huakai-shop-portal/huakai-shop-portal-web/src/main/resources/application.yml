@@ -13,6 +13,14 @@ spring:
       - classpath:/templates
   application:
     name: app-huakai-portal-web
+  session:
+    store-type: redis #指定redis实现spring session
+    timeout: 500 # Session 过期时间，单位s
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
 ###服务注册到eureka地址
 eureka:
   client:
