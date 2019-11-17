@@ -13,9 +13,17 @@
             huakai-shop-basics-springcloud-eureka
         </module>
         <module>huakai-shop-basics-springcloud-gateway</module>
+        <module>huakai-shop-basics-xxl-sso-server</module>
     </modules>
 
     <artifactId>huakai-shop-basiscs</artifactId>
     <packaging>pom</packaging>
-
+    <dependencies>
+        <!-- sso core -->
+        <dependency>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-sso-core</artifactId>
+            <version>1.1.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

@@ -35,6 +35,7 @@ public class MemberRegisterServiceImpl extends BaseApiService<JSONObject>  imple
     private UserMapper userMapper;
 
 
+    @Override
     public BaseResponse<JSONObject> register(@RequestBody UserInputDTO userInputDTO, String registCode) {
         //1 参数校验已经在框架做了
         //2 判断手机号和验证吗是否正确

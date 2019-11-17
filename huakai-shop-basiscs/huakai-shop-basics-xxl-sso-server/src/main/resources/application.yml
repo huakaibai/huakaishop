@@ -1,0 +1,33 @@
+server:
+  servlet:
+    context-path: /xxl-sso-server
+  port: 8082
+spring:
+  application:
+    name: app-huakai-xxl-sso-server
+  freemarker:
+    charset: UTF-8
+    request-context-attribute: request
+    settings:
+      number_format: 0.##########
+    suffix: .ftl
+    templateLoaderPath: classpath:/templates/
+  mvc:
+    static-path-pattern: /static/**
+  resources:
+    static-locations: classpath:/static/
+xxl:
+  sso:
+    redis:
+      address: redis://127.0.0.1:6379
+      expire:
+        minite: 1440
+###服务注册到eureka地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8100/eureka
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000

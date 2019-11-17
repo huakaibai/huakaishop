@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
+/**
+ * @author 花开
+ */
 @Api(tags = "用户登陆服务接口")
 @Validated
 public interface IMemberLoginService {

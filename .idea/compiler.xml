@@ -8,23 +8,24 @@
         <outputRelativeToContentRoot value="true" />
         <module name="huakai-shop-service-api-member" />
         <module name="huakaishopapimemberdto" />
-        <module name="huakai-shop-portal-web" />
+        <module name="huakai-shop-service-impl-member" />
         <module name="huakaishopcommoncore" />
         <module name="huakai-shop-service-api-weixin" />
         <module name="huakai-shop-basics-springcloud-gateway" />
         <module name="huakai-shop-service-impl-weixin" />
         <module name="huakaishopapiweixindto" />
-        <module name="huakaishopserviceimplmember" />
+        <module name="huakaishopbasicsxxlssoserver" />
         <module name="huakai-shop-api-member-dto" />
         <module name="huakai-shop-web-common" />
         <module name="huakaishopserviceimplweixin" />
         <module name="huakai-shop-basics-springcloud-eureka" />
         <module name="huakaishopserviceapiweixin" />
         <module name="huakai-shop-api-weixin-dto" />
-        <module name="huakaishopserviceapimember" />
-        <module name="huakai-shop-common-core" />
         <module name="huakaishopbasiscs" />
-        <module name="huakai-shop-service-impl-member" />
+        <module name="huakaishopserviceapimember" />
+        <module name="huakai-shop-portal-web" />
+        <module name="huakai-shop-common-core" />
+        <module name="huakaishopserviceimplmember" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -56,6 +57,7 @@
       <module name="huakaishopapiweixinentity" options="-parameters" />
       <module name="huakaishopbasicsspringcloudeureka" options="-parameters" />
       <module name="huakaishopbasicsspringcloudgateway" options="-parameters" />
+      <module name="huakaishopbasicsxxlssoserver" options="-parameters" />
       <module name="huakaishopbasiscs" options="-parameters" />
       <module name="huakaishopcommon" options="-parameters" />
       <module name="huakaishopcommoncore" options="-parameters" />

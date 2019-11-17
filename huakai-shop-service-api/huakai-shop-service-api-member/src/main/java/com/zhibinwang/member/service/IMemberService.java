@@ -3,6 +3,7 @@ package com.zhibinwang.member.service;
 import com.alibaba.fastjson.JSONObject;
 import com.zhibinwang.base.BaseResponse;
 import com.zhibinwang.core.validate.Phone;
+import com.zhibinwang.member.input.dto.UserLoginInpDTO;
 import com.zhibinwang.member.output.dto.UserOutputDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -37,6 +38,11 @@ public interface IMemberService {
           })
     BaseResponse<UserOutputDTO> existMobile(   @RequestParam("phone") @NotEmpty(message = "手机号不能为空") @Phone(message = "手机号不合法") String phone);
 
+    /**
+     *
+     * @param token
+     * @return
+     */
     @PostMapping("/getInfoByToken")
     @ApiOperation(value = "获取用户信息根据token")
     @ApiImplicitParams({
@@ -44,6 +50,14 @@ public interface IMemberService {
     })
     BaseResponse<UserOutputDTO> getInfoByToken(@RequestParam("token") @NotEmpty( message = "token不能为空") String token);
 
+    /**
+     *
+     * @param userLoginInpDTO
+     * @return
+     */
+    @PostMapping("/loginSSO")
+    @ApiOperation(value = "用户登陆通过sso")
+    BaseResponse<UserOutputDTO> loginSSO(@RequestBody UserLoginInpDTO userLoginInpDTO);
 
 
 }

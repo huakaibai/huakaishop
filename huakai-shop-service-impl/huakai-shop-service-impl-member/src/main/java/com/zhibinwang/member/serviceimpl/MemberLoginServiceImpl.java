@@ -60,6 +60,7 @@ public class MemberLoginServiceImpl extends BaseApiService<JSONObject> implement
      * @param userLoginInpDTO
      * @return
      */
+    @Override
     public BaseResponse<JSONObject> login(@RequestBody UserLoginInpDTO userLoginInpDTO) {
 
         //1 对手机号先进性加密
@@ -83,7 +84,8 @@ public class MemberLoginServiceImpl extends BaseApiService<JSONObject> implement
 
 
 
-    public BaseResponse<JSONObject> exit( String token) {
+    @Override
+    public BaseResponse<JSONObject> exit(String token) {
         //1，现根据token更新数据库
        userTokenMapper.updateTokenAvailability(token);
        // 2.直接删除token即可
@@ -92,7 +94,8 @@ public class MemberLoginServiceImpl extends BaseApiService<JSONObject> implement
         return setResultSuccess("注销成功");
     }
 
-    public BaseResponse<JSONObject> findByqqOpenId(@NotEmpty(message = "openId不能为空") String openId, String loginType, String deviceInfo) {
+    @Override
+    public BaseResponse<JSONObject> findByqqOpenId(String openId, String loginType, String deviceInfo) {
         //根据qqopenid 获取用户
         UserDo userDo = userMapper.findByQQOpenid(openId);
         if (userDo == null){

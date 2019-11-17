@@ -8,6 +8,9 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * @author 花开
+ */
 @Data
 @ApiModel(value = "用户登陆参数")
 public class UserLoginInpDTO {
@@ -28,15 +31,19 @@ public class UserLoginInpDTO {
 	/**
 	 * 登陆类型 PC、Android 、IOS
 	 */
+
+	//@NotBlank(message="登陆类型不能为空")
+	//@VaLoginType
 	@ApiModelProperty(value = "登陆类型")
-	@NotBlank(message="登陆类型不能为空")
-	@VaLoginType
+	/**
+	 *
+	 */
 	private String loginType;
 	/**
 	 * 设备信息
 	 */
 	@ApiModelProperty(value = "设备信息")
-	@NotBlank(message="设备信息不能为空")
+	//@NotBlank(message="设备信息不能为空")
 
 	private String deviceInfor;
 

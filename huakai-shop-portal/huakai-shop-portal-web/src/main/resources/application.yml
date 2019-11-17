@@ -28,3 +28,14 @@ eureka:
       defaultZone: http://localhost:8100/eureka
 server:
   port: 8081
+
+xxl-sso:
+  excluded:
+    paths:
+xxl:
+  sso:
+    server: http://xxlssoserver.com:8082/xxl-sso-server
+    logout:
+      path: /logout
+    redis:
+      address: redis://127.0.0.1:6379
