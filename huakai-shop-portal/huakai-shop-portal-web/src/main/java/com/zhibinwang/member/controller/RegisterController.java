@@ -10,6 +10,7 @@ import com.zhibinwang.web.bean.HuakaiBeanUtils;
 import com.zhibinwang.web.code.RandomValidateCodeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,7 +25,10 @@ import javax.servlet.http.HttpSession;
 public class RegisterController extends BaseWebController {
 	private static final String MEMBER_REGISTER_PAGE = "member/register";
 
-	private static final String MEMBER_LOGIN_PAGE = "member/login";
+	private static final String MEMBER_LOGIN_PAGE = "/login";
+
+	@Value("${xxl.sso.server}")
+	private String loginUrl;
 
 	@Autowired
 	private MemberRegisterServiceFeignClient memberRegisterServiceFeignClient;
@@ -67,7 +71,7 @@ public class RegisterController extends BaseWebController {
 			setErrorMsg(model, "系统异常");
 			return MEMBER_REGISTER_PAGE;
 		}
-		return MEMBER_LOGIN_PAGE;
+		return "redirect:"+loginUrl+MEMBER_LOGIN_PAGE;
 
 	}
 

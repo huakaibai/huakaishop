@@ -13,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 /**
@@ -59,5 +60,9 @@ public interface IMemberService {
     @ApiOperation(value = "用户登陆通过sso")
     BaseResponse<UserOutputDTO> loginSSO(@RequestBody UserLoginInpDTO userLoginInpDTO);
 
+
+    @PostMapping("/findUserByQOpenId")
+    @ApiOperation(value = "根据qqOpenId查询用户")
+    BaseResponse<UserOutputDTO> findUserByQOpenId(@RequestParam("qqOpenId") @NotBlank(message = "openId 不能为空") String qqOpenId);
 
 }

@@ -15,8 +15,10 @@ import com.zhibinwang.member.input.dto.UserLoginInpDTO;
 import com.zhibinwang.member.output.dto.UserOutputDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -39,6 +41,13 @@ public class WebController {
 
     @Autowired
     private MemberServiceFeign memberServiceFeign;
+
+
+  /*  @Value("${huakai.shop.loginUrl}")
+    private String loginUrl;*/
+
+    @Value("${huakai.shop.indexUrl}")
+    private String indexUrl;
 
     @RequestMapping("/")
     public String index(Model model, HttpServletRequest request, HttpServletResponse response) {
@@ -96,6 +105,7 @@ public class WebController {
      * @param password
      * @return
      */
+  //  @CrossOrigin(origins = "http://127.0.0.1:8081")
     @RequestMapping("/doLogin")
     public String doLogin(HttpServletRequest request,
                         HttpServletResponse response,
@@ -146,7 +156,7 @@ public class WebController {
             String redirectUrlFinal = redirectUrl + "?" + Conf.SSO_SESSIONID + "=" + sessionId;
             return "redirect:" + redirectUrlFinal;
         } else {
-            return "redirect:/";
+            return "redirect:"+indexUrl+ "?" + Conf.SSO_SESSIONID + "=" + sessionId;
         }
 
     }
@@ -165,7 +175,7 @@ public class WebController {
         SsoWebLoginHelper.logout(request, response);
 
         redirectAttributes.addAttribute(Conf.REDIRECT_URL, request.getParameter(Conf.REDIRECT_URL));
-        return "redirect:/login";
+        return "redirect:"+indexUrl;
     }
 
 

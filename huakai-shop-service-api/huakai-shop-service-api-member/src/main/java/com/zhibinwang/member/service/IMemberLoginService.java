@@ -43,4 +43,9 @@ public interface IMemberLoginService {
 	})
 	BaseResponse<JSONObject> findByqqOpenId(@RequestParam("openId") @NotEmpty( message = "openId不能为空") String openId,@RequestParam("loginType")  @VaLoginType() String loginType, @RequestParam("deviceInfo") String deviceInfo);
 
+
+	@PostMapping("/findByOpenId")
+	@ApiOperation(value = "根据openId绑定用户信息")
+	BaseResponse<JSONObject> bindUserByQopenId(UserLoginInpDTO userLoginInpDTO);
+
 }

@@ -36,4 +36,7 @@ public class LoginVo {
 	private String graphicCode;
 
 
+	private String qqOpenId;
+
+
 }

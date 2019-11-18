@@ -108,6 +108,23 @@ public class MemberLoginServiceImpl extends BaseApiService<JSONObject> implement
         return getJsonObjectBaseResponse(userDo,userTokenDo,loginType,deviceInfo);
     }
 
+    @Override
+    public BaseResponse<JSONObject> bindUserByQopenId(UserLoginInpDTO userLoginInpDTO) {
+        //1 对手机号先进性加密
+        String password = DigestUtil.md5Hex(userLoginInpDTO.getPassword());
+
+        // 2.根据手机号和密码查询用户
+        UserDo user = userMapper.login(userLoginInpDTO.getMobile(), password);
+        if (user == null){
+            return setResultError("用户名或密码不正确");
+        }
+        //如果openId不为空绑定openId
+        userMapper.updateQqOpenId(user.getUserId(),userLoginInpDTO.getQqOpenId());
+
+
+        return setResultSuccess("绑定成功");
+    }
+
 
     /**
      * 防止代码重复做的优化用于普通登录和qq联合登录

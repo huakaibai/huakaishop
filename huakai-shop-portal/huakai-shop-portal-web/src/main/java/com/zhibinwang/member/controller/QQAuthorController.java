@@ -11,13 +11,20 @@ import com.zhibinwang.base.BaseResponse;
 import com.zhibinwang.base.BaseWebController;
 import com.zhibinwang.core.token.LoginType;
 import com.zhibinwang.member.feign.MemberLoginServiceFiengClient;
+import com.zhibinwang.member.input.dto.UserLoginInpDTO;
+import com.zhibinwang.member.vo.LoginVo;
 import com.zhibinwang.web.WebConstants;
+import com.zhibinwang.web.bean.HuakaiBeanUtils;
 import com.zhibinwang.web.cookie.CookieUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -117,4 +124,7 @@ public class QQAuthorController extends BaseWebController {
 
 
     }
+
+
+
 }

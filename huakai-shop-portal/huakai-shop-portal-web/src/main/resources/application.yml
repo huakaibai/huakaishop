@@ -31,7 +31,7 @@ server:
 
 xxl-sso:
   excluded:
-    paths:
+    paths: /,/index,/login,/register
 xxl:
   sso:
     server: http://xxlssoserver.com:8082/xxl-sso-server

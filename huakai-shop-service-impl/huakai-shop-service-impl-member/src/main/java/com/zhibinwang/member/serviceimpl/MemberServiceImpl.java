@@ -18,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotBlank;
+
 
 /**
  * @author 花开
@@ -81,5 +83,16 @@ public class MemberServiceImpl extends BaseApiService<UserOutputDTO> implements 
 
         UserOutputDTO userOutputDTO = HuakaiBeanUtils.doToDto(user, UserOutputDTO.class);
         return setResultSuccess(userOutputDTO);
+    }
+
+    @Override
+    public BaseResponse<UserOutputDTO> findUserByQOpenId(@NotBlank(message = "openId 不能为空") String qqOpenId) {
+
+        UserDo userDo = userMapper.findByQQOpenid(qqOpenId);
+        if (userDo != null){
+            UserOutputDTO userOutputDTO = HuakaiBeanUtils.doToDto(userDo, UserOutputDTO.class);
+            return setResultSuccess(userOutputDTO);
+        }
+        return setResultError(Constants.HTTP_RES_CODE_EXISTMOBILE_203,"未绑定用户");
     }
 }

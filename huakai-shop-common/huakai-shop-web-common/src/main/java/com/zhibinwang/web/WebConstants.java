@@ -12,4 +12,6 @@ public interface WebConstants {
     Integer HTTP_RES_CODE_EXISTMOBILE_203 = 203;
 
     String LOGIN_QQ_OPENID = "loginQqOpenId";
+    //sessionId
+    String SSO_SESSIONID = "xxl_sso_sessionid";
 }

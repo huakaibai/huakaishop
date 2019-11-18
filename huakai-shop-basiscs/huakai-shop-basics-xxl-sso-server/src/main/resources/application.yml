@@ -31,3 +31,6 @@ eureka:
 ribbon:
   ReadTimeout: 60000
   ConnectTimeout: 60000
+huakai:
+  shop:
+    loginUrl: http://127.0.0.1:8081/login
