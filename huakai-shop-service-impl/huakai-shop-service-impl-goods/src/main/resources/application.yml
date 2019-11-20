@@ -1,0 +1,38 @@
+###服务启动端口号
+server:
+  port: 8500
+###服务名称(服务注册到eureka名称)
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8100/eureka
+
+
+
+spring:
+  application:
+    name:  app-huakai-goods
+  redis:
+    host: 127.0..0.1
+    port: 6379
+    #password: 123456
+
+
+    jedis:
+      pool:
+        max-idle: 100
+        min-idle: 1
+        max-wait: 100
+        max-active: 1000
+  ###数据库相关连接
+  datasource:
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/goods?useUnicode=true&characterEncoding=UTF-
+  data:
+    elasticsearch:
+      ####集群名称
+      cluster-name: elasticsearch-cluster
+      ####地址
+      cluster-nodes: 127.0.0.1:9300
