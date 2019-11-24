@@ -1,16 +1,30 @@
 package com.zhibinwang.pay.mapper;
 
-import com.zhibinwang.pay.entity.PaymentTransactionEntity;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import com.zhibinwang.pay.entity.PaymentTransaction;
+import com.zhibinwang.pay.entity.PaymentTransactionExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface PaymentTransactionMapper {
-	@Options(useGeneratedKeys = true, keyProperty = "id")
-	@Insert("INSERT INTO `payment_transaction` VALUES (null, #{payAmount}, '0', #{userId}, #{orderId}, null, null, now(), null, now(),null,#{paymentId});")
-	public int insertPaymentTransaction(PaymentTransactionEntity paymentTransactionEntity);
+    int countByExample(PaymentTransactionExample example);
 
-	@Select("SELECT ID AS ID ,pay_Amount AS payAmount,payment_Status AS paymentStatus,user_ID AS userId, order_Id AS orderId , created_Time as createdTime ,partypay_Id as partyPayId , payment_Id as paymentId FROM payment_transaction WHERE ID=#{id};")
-	public PaymentTransactionEntity selectById(Long id);
-	
+    int deleteByExample(PaymentTransactionExample example);
+
+    int deleteByPrimaryKey(Long id);
+
+    int insert(PaymentTransaction record);
+
+    int insertSelective(PaymentTransaction record);
+
+    List<PaymentTransaction> selectByExample(PaymentTransactionExample example);
+
+    PaymentTransaction selectByPrimaryKey(Long id);
+
+    int updateByExampleSelective(@Param("record") PaymentTransaction record, @Param("example") PaymentTransactionExample example);
+
+    int updateByExample(@Param("record") PaymentTransaction record, @Param("example") PaymentTransactionExample example);
+
+    int updateByPrimaryKeySelective(PaymentTransaction record);
+
+    int updateByPrimaryKey(PaymentTransaction record);
 }

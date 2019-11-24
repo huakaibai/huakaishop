@@ -5,8 +5,8 @@
 <title>蚂蚁商城-登录</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="stylesheet" href="../res/layui/css/layui.css">
-<link rel="stylesheet" href="../res/static/css/index.css">
+<link rel="stylesheet" href="${request.contextPath}/static/res/layui/css/layui.css">
+<link rel="stylesheet" href="${request.contextPath}/static/res/static/css/index.css">
 </head>
 <body>
 
@@ -71,13 +71,11 @@
 						class="layui-input">
 				</div>
 				<div class="layui-input-block getCode">
-					<div class="col-xs-8">
-						<div class="checkbox icheck">
+
 							<label>
 								<input type="checkbox" name="ifRemember" >记住密码
 							</label>
-						</div>
-					</div>
+				</div>
 <#--				<div class="layui-input-block getCode">
 					<input type="text" name="graphicCode" required lay-verify="required"
 						placeholder="请输入验证码" class="layui-input"> <img alt=""
@@ -91,8 +89,8 @@
 					<div class="line"></div>
 					<!-- 弹框底部 -->
 
-					<a href="/qqAuth"  target="_blank"  class="load-qq"><img
-								src="../res/static/img/QQ@2x.png"/><br><span>QQ登录</span></a>
+					<a href="${request.contextPath}/qqAuth"  target="_blank"  class="load-qq"><img
+								src="${request.contextPath}/static/res/static/img/QQ@2x.png"/><br><span>QQ登录</span></a>
 
 					</div>
 				</div>

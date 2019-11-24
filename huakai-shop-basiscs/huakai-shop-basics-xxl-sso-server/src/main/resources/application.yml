@@ -34,3 +34,8 @@ ribbon:
 huakai:
   shop:
     loginUrl: http://127.0.0.1:8081/login
+
+    indexUrl: http://127.0.0.1:8081/
+
+
+

@@ -45,5 +45,8 @@ public interface Constants {
 	Long MEMBRE_LOGIN_TOKEN_TIME = 77776000L;
 
 
+	String PAY_TOKEN_PRIX = "pay_";
+
+
 
 }

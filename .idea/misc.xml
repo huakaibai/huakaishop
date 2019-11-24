@@ -14,6 +14,7 @@
       <set>
         <option value="$PROJECT_DIR$/huakai-shop-api-entity/huakai-shop-api-weixin-entity/pom.xml" />
         <option value="$PROJECT_DIR$/huakai-shop-api-entity/pom.xml" />
+        <option value="$PROJECT_DIR$/huakai-shop-basiscs/huakai-shop-basics-elk-kafka/pom.xml" />
       </set>
     </option>
   </component>

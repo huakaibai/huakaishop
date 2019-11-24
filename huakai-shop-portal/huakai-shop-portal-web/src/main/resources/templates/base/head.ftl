@@ -16,9 +16,9 @@
      <#if desensMobile??>
          <a href="">${desensMobile}</a>
        <a href="">我的订单</a>
-       <a href="http://xxlssoserver.com:8081/xxl-sso-server/logout">退出</a>
+       <a href="http://xxlssoserver.com:8082/xxl-sso-server/logout">退出</a>
       <#else >
-          <a href="http://xxlssoserver.com:8081/xxl-sso-server/login">登录</a>
+          <a href="http://xxlssoserver.com:8082/xxl-sso-server/login">登录</a>
      </#if>
      
         <a href="http://wpa.qq.com/msgrd?v=3&uin=483966038&site=qq&menu=yes">在线客服</a>

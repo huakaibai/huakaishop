@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhibinwang.pay.mapper.PaymentTransactionMapper" >
+  <resultMap id="BaseResultMap" type="com.zhibinwang.pay.entity.PaymentTransaction" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="PAY_AMOUNT" property="payAmount" jdbcType="BIGINT" />
+    <result column="PAYMENT_STATUS" property="paymentStatus" jdbcType="INTEGER" />
+    <result column="USER_ID" property="userId" jdbcType="INTEGER" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="PAY_NAME" property="payName" jdbcType="VARCHAR" />
+    <result column="PARTY_PAY_ID" property="partyPayId" jdbcType="VARCHAR" />
+    <result column="REVISION" property="revision" jdbcType="INTEGER" />
+    <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="UPDATED_TIME" property="updatedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, PAY_AMOUNT, PAYMENT_STATUS, USER_ID, ORDER_ID, PAY_NAME, PARTY_PAY_ID, REVISION, 
+    CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhibinwang.pay.entity.PaymentTransactionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from payment_transaction
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from payment_transaction
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from payment_transaction
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zhibinwang.pay.entity.PaymentTransactionExample" >
+    delete from payment_transaction
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zhibinwang.pay.entity.PaymentTransaction" >
+    insert into payment_transaction (ID, PAY_AMOUNT, PAYMENT_STATUS, 
+      USER_ID, ORDER_ID, PAY_NAME, 
+      PARTY_PAY_ID, REVISION, CREATED_BY, 
+      CREATED_TIME, UPDATED_BY, UPDATED_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{payAmount,jdbcType=BIGINT}, #{paymentStatus,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{payName,jdbcType=VARCHAR}, 
+      #{partyPayId,jdbcType=VARCHAR}, #{revision,jdbcType=INTEGER}, #{createdBy,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhibinwang.pay.entity.PaymentTransaction" >
+    insert into payment_transaction
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="payAmount != null" >
+        PAY_AMOUNT,
+      </if>
+      <if test="paymentStatus != null" >
+        PAYMENT_STATUS,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="payName != null" >
+        PAY_NAME,
+      </if>
+      <if test="partyPayId != null" >
+        PARTY_PAY_ID,
+      </if>
+      <if test="revision != null" >
+        REVISION,
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY,
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="payAmount != null" >
+        #{payAmount,jdbcType=BIGINT},
+      </if>
+      <if test="paymentStatus != null" >
+        #{paymentStatus,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="payName != null" >
+        #{payName,jdbcType=VARCHAR},
+      </if>
+      <if test="partyPayId != null" >
+        #{partyPayId,jdbcType=VARCHAR},
+      </if>
+      <if test="revision != null" >
+        #{revision,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zhibinwang.pay.entity.PaymentTransactionExample" resultType="java.lang.Integer" >
+    select count(*) from payment_transaction
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update payment_transaction
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.payAmount != null" >
+        PAY_AMOUNT = #{record.payAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.paymentStatus != null" >
+        PAYMENT_STATUS = #{record.paymentStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        USER_ID = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payName != null" >
+        PAY_NAME = #{record.payName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.partyPayId != null" >
+        PARTY_PAY_ID = #{record.partyPayId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.revision != null" >
+        REVISION = #{record.revision,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdBy != null" >
+        CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdTime != null" >
+        CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedBy != null" >
+        UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedTime != null" >
+        UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update payment_transaction
+    set ID = #{record.id,jdbcType=BIGINT},
+      PAY_AMOUNT = #{record.payAmount,jdbcType=BIGINT},
+      PAYMENT_STATUS = #{record.paymentStatus,jdbcType=INTEGER},
+      USER_ID = #{record.userId,jdbcType=INTEGER},
+      ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      PAY_NAME = #{record.payName,jdbcType=VARCHAR},
+      PARTY_PAY_ID = #{record.partyPayId,jdbcType=VARCHAR},
+      REVISION = #{record.revision,jdbcType=INTEGER},
+      CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhibinwang.pay.entity.PaymentTransaction" >
+    update payment_transaction
+    <set >
+      <if test="payAmount != null" >
+        PAY_AMOUNT = #{payAmount,jdbcType=BIGINT},
+      </if>
+      <if test="paymentStatus != null" >
+        PAYMENT_STATUS = #{paymentStatus,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="payName != null" >
+        PAY_NAME = #{payName,jdbcType=VARCHAR},
+      </if>
+      <if test="partyPayId != null" >
+        PARTY_PAY_ID = #{partyPayId,jdbcType=VARCHAR},
+      </if>
+      <if test="revision != null" >
+        REVISION = #{revision,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhibinwang.pay.entity.PaymentTransaction" >
+    update payment_transaction
+    set PAY_AMOUNT = #{payAmount,jdbcType=BIGINT},
+      PAYMENT_STATUS = #{paymentStatus,jdbcType=INTEGER},
+      USER_ID = #{userId,jdbcType=INTEGER},
+      ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      PAY_NAME = #{payName,jdbcType=VARCHAR},
+      PARTY_PAY_ID = #{partyPayId,jdbcType=VARCHAR},
+      REVISION = #{revision,jdbcType=INTEGER},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

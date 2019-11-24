@@ -5,12 +5,9 @@ import com.xxl.sso.core.login.SsoWebLoginHelper;
 import com.xxl.sso.core.store.SsoLoginStore;
 import com.xxl.sso.core.store.SsoSessionIdHelper;
 import com.xxl.sso.core.user.XxlSsoUser;
-import com.xxl.sso.server.core.model.UserInfo;
-import com.xxl.sso.server.core.result.ReturnT;
+
 import com.xxl.sso.server.feign.MemberServiceFeign;
-import com.xxl.sso.server.service.UserService;
 import com.zhibinwang.base.BaseResponse;
-import com.zhibinwang.member.input.dto.UserInputDTO;
 import com.zhibinwang.member.input.dto.UserLoginInpDTO;
 import com.zhibinwang.member.output.dto.UserOutputDTO;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -35,8 +31,7 @@ import java.util.UUID;
 @Slf4j
 public class WebController {
 
-    @Autowired
-    private UserService userService;
+
 
 
     @Autowired

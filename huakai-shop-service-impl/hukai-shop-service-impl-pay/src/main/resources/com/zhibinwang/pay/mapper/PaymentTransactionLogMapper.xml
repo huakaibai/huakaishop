@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhibinwang.pay.mapper.PaymentTransactionLogMapper" >
+  <resultMap id="BaseResultMap" type="com.zhibinwang.pay.entity.PaymentTransactionLog" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="CHANNEL_ID" property="channelId" jdbcType="INTEGER" />
+    <result column="TRANSACTION_ID" property="transactionId" jdbcType="INTEGER" />
+    <result column="REVISION" property="revision" jdbcType="INTEGER" />
+    <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="UPDATED_TIME" property="updatedTime" jdbcType="TIMESTAMP" />
+    <result column="untitled" property="untitled" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zhibinwang.pay.entity.PaymentTransactionLog" extends="BaseResultMap" >
+    <result column="SYNCH_LOG" property="synchLog" jdbcType="LONGVARCHAR" />
+    <result column="ASYNC_LOG" property="asyncLog" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, CHANNEL_ID, TRANSACTION_ID, REVISION, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME, 
+    untitled
+  </sql>
+  <sql id="Blob_Column_List" >
+    SYNCH_LOG, ASYNC_LOG
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.zhibinwang.pay.entity.PaymentTransactionLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from payment_transaction_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhibinwang.pay.entity.PaymentTransactionLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from payment_transaction_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from payment_transaction_log
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from payment_transaction_log
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zhibinwang.pay.entity.PaymentTransactionLogExample" >
+    delete from payment_transaction_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zhibinwang.pay.entity.PaymentTransactionLog" >
+    insert into payment_transaction_log (ID, CHANNEL_ID, TRANSACTION_ID, 
+      REVISION, CREATED_BY, CREATED_TIME, 
+      UPDATED_BY, UPDATED_TIME, untitled, 
+      SYNCH_LOG, ASYNC_LOG)
+    values (#{id,jdbcType=INTEGER}, #{channelId,jdbcType=INTEGER}, #{transactionId,jdbcType=INTEGER}, 
+      #{revision,jdbcType=INTEGER}, #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, #{untitled,jdbcType=VARCHAR}, 
+      #{synchLog,jdbcType=LONGVARCHAR}, #{asyncLog,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhibinwang.pay.entity.PaymentTransactionLog" >
+    insert into payment_transaction_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="channelId != null" >
+        CHANNEL_ID,
+      </if>
+      <if test="transactionId != null" >
+        TRANSACTION_ID,
+      </if>
+      <if test="revision != null" >
+        REVISION,
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY,
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME,
+      </if>
+      <if test="untitled != null" >
+        untitled,
+      </if>
+      <if test="synchLog != null" >
+        SYNCH_LOG,
+      </if>
+      <if test="asyncLog != null" >
+        ASYNC_LOG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="channelId != null" >
+        #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="transactionId != null" >
+        #{transactionId,jdbcType=INTEGER},
+      </if>
+      <if test="revision != null" >
+        #{revision,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="untitled != null" >
+        #{untitled,jdbcType=VARCHAR},
+      </if>
+      <if test="synchLog != null" >
+        #{synchLog,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="asyncLog != null" >
+        #{asyncLog,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zhibinwang.pay.entity.PaymentTransactionLogExample" resultType="java.lang.Integer" >
+    select count(*) from payment_transaction_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update payment_transaction_log
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.channelId != null" >
+        CHANNEL_ID = #{record.channelId,jdbcType=INTEGER},
+      </if>
+      <if test="record.transactionId != null" >
+        TRANSACTION_ID = #{record.transactionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.revision != null" >
+        REVISION = #{record.revision,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdBy != null" >
+        CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdTime != null" >
+        CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedBy != null" >
+        UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedTime != null" >
+        UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.untitled != null" >
+        untitled = #{record.untitled,jdbcType=VARCHAR},
+      </if>
+      <if test="record.synchLog != null" >
+        SYNCH_LOG = #{record.synchLog,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.asyncLog != null" >
+        ASYNC_LOG = #{record.asyncLog,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update payment_transaction_log
+    set ID = #{record.id,jdbcType=INTEGER},
+      CHANNEL_ID = #{record.channelId,jdbcType=INTEGER},
+      TRANSACTION_ID = #{record.transactionId,jdbcType=INTEGER},
+      REVISION = #{record.revision,jdbcType=INTEGER},
+      CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+      untitled = #{record.untitled,jdbcType=VARCHAR},
+      SYNCH_LOG = #{record.synchLog,jdbcType=LONGVARCHAR},
+      ASYNC_LOG = #{record.asyncLog,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update payment_transaction_log
+    set ID = #{record.id,jdbcType=INTEGER},
+      CHANNEL_ID = #{record.channelId,jdbcType=INTEGER},
+      TRANSACTION_ID = #{record.transactionId,jdbcType=INTEGER},
+      REVISION = #{record.revision,jdbcType=INTEGER},
+      CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+      untitled = #{record.untitled,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhibinwang.pay.entity.PaymentTransactionLog" >
+    update payment_transaction_log
+    <set >
+      <if test="channelId != null" >
+        CHANNEL_ID = #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="transactionId != null" >
+        TRANSACTION_ID = #{transactionId,jdbcType=INTEGER},
+      </if>
+      <if test="revision != null" >
+        REVISION = #{revision,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="untitled != null" >
+        untitled = #{untitled,jdbcType=VARCHAR},
+      </if>
+      <if test="synchLog != null" >
+        SYNCH_LOG = #{synchLog,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="asyncLog != null" >
+        ASYNC_LOG = #{asyncLog,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zhibinwang.pay.entity.PaymentTransactionLog" >
+    update payment_transaction_log
+    set CHANNEL_ID = #{channelId,jdbcType=INTEGER},
+      TRANSACTION_ID = #{transactionId,jdbcType=INTEGER},
+      REVISION = #{revision,jdbcType=INTEGER},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      untitled = #{untitled,jdbcType=VARCHAR},
+      SYNCH_LOG = #{synchLog,jdbcType=LONGVARCHAR},
+      ASYNC_LOG = #{asyncLog,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhibinwang.pay.entity.PaymentTransactionLog" >
+    update payment_transaction_log
+    set CHANNEL_ID = #{channelId,jdbcType=INTEGER},
+      TRANSACTION_ID = #{transactionId,jdbcType=INTEGER},
+      REVISION = #{revision,jdbcType=INTEGER},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      untitled = #{untitled,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

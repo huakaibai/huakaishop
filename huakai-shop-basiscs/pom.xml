@@ -15,6 +15,8 @@
         <module>huakai-shop-basics-springcloud-gateway</module>
         <module>huakai-shop-basics-xxl-sso-server</module>
         <module>huakai-shop-basics-elk-kafka</module>
+        <module>huakai-shop-basics-elk-kafka</module>
+        <module>huakai-shop-basics-elk-kafka</module>
     </modules>
 
     <artifactId>huakai-shop-basiscs</artifactId>

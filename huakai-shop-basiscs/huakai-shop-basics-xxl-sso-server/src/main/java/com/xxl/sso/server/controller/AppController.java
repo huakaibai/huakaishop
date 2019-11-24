@@ -1,11 +1,12 @@
+/*
 package com.xxl.sso.server.controller;
 
+import com.xxl.sso.core.entity.ReturnT;
 import com.xxl.sso.core.login.SsoTokenLoginHelper;
 import com.xxl.sso.core.store.SsoLoginStore;
 import com.xxl.sso.core.user.XxlSsoUser;
 import com.xxl.sso.core.store.SsoSessionIdHelper;
-import com.xxl.sso.server.core.model.UserInfo;
-import com.xxl.sso.server.core.result.ReturnT;
+
 import com.xxl.sso.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,11 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.UUID;
 
+*/
 /**
  * sso server (for app)
  *
  * @author xuxueli 2018-04-08 21:02:54
- */
+ *//*
+
 @Controller
 @RequestMapping("/app")
 public class AppController {
@@ -27,13 +30,15 @@ public class AppController {
     private UserService userService;
 
 
-    /**
+    */
+/**
      * Login
      *
      * @param username
      * @param password
      * @return
-     */
+     *//*
+
     @RequestMapping("/login")
     @ResponseBody
     public ReturnT<String> login(String username, String password) {
@@ -64,12 +69,14 @@ public class AppController {
     }
 
 
-    /**
+    */
+/**
      * Logout
      *
      * @param sessionId
      * @return
-     */
+     *//*
+
     @RequestMapping("/logout")
     @ResponseBody
     public ReturnT<String> logout(String sessionId) {
@@ -78,12 +85,14 @@ public class AppController {
         return ReturnT.SUCCESS;
     }
 
-    /**
+    */
+/**
      * logincheck
      *
      * @param sessionId
      * @return
-     */
+     *//*
+
     @RequestMapping("/logincheck")
     @ResponseBody
     public ReturnT<XxlSsoUser> logincheck(String sessionId) {
@@ -96,4 +105,4 @@ public class AppController {
         return new ReturnT<XxlSsoUser>(xxlUser);
     }
 
-}
+}*/

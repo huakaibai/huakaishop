@@ -12,7 +12,7 @@ public class UserOutputDTO {
 
 	@ApiModelProperty(value = "用户Id")
 
-	private Integer userId;
+	private Long userId;
 
 	@ApiModelProperty(value = "手机号码")
 

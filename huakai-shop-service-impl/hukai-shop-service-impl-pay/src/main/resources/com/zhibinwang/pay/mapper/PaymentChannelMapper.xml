@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhibinwang.pay.mapper.PaymentChannelMapper" >
+  <resultMap id="BaseResultMap" type="com.zhibinwang.pay.entity.PaymentChannel" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <id column="CHANNEL_ID" property="channelId" jdbcType="VARCHAR" />
+    <result column="CHANNEL_NAME" property="channelName" jdbcType="VARCHAR" />
+    <result column="MERCHANT_ID" property="merchantId" jdbcType="VARCHAR" />
+    <result column="CHANNEL_STATE" property="channelState" jdbcType="INTEGER" />
+    <result column="REVISION" property="revision" jdbcType="INTEGER" />
+    <result column="CLASS_NAME" property="className" jdbcType="VARCHAR" />
+    <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="UPDATED_TIME" property="updatedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zhibinwang.pay.entity.PaymentChannel" extends="BaseResultMap" >
+    <result column="SYNC_URL" property="syncUrl" jdbcType="LONGVARCHAR" />
+    <result column="ASYN_URL" property="asynUrl" jdbcType="LONGVARCHAR" />
+    <result column="PUBLIC_KEY" property="publicKey" jdbcType="LONGVARCHAR" />
+    <result column="PRIVATE_KEY" property="privateKey" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, CHANNEL_ID, CHANNEL_NAME, MERCHANT_ID, CHANNEL_STATE, REVISION, CLASS_NAME, CREATED_BY, 
+    CREATED_TIME, UPDATED_BY, UPDATED_TIME
+  </sql>
+  <sql id="Blob_Column_List" >
+    SYNC_URL, ASYN_URL, PUBLIC_KEY, PRIVATE_KEY
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.zhibinwang.pay.entity.PaymentChannelExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from payment_channel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhibinwang.pay.entity.PaymentChannelExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from payment_channel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from payment_channel
+    where ID = #{id,jdbcType=INTEGER}
+      and CHANNEL_ID = #{channelId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from payment_channel
+    where ID = #{id,jdbcType=INTEGER}
+      and CHANNEL_ID = #{channelId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zhibinwang.pay.entity.PaymentChannelExample" >
+    delete from payment_channel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zhibinwang.pay.entity.PaymentChannel" >
+    insert into payment_channel (ID, CHANNEL_ID, CHANNEL_NAME, 
+      MERCHANT_ID, CHANNEL_STATE, REVISION, 
+      CLASS_NAME, CREATED_BY, CREATED_TIME, 
+      UPDATED_BY, UPDATED_TIME, SYNC_URL, 
+      ASYN_URL, PUBLIC_KEY, PRIVATE_KEY
+      )
+    values (#{id,jdbcType=INTEGER}, #{channelId,jdbcType=VARCHAR}, #{channelName,jdbcType=VARCHAR}, 
+      #{merchantId,jdbcType=VARCHAR}, #{channelState,jdbcType=INTEGER}, #{revision,jdbcType=INTEGER}, 
+      #{className,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, #{syncUrl,jdbcType=LONGVARCHAR}, 
+      #{asynUrl,jdbcType=LONGVARCHAR}, #{publicKey,jdbcType=LONGVARCHAR}, #{privateKey,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhibinwang.pay.entity.PaymentChannel" >
+    insert into payment_channel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="channelId != null" >
+        CHANNEL_ID,
+      </if>
+      <if test="channelName != null" >
+        CHANNEL_NAME,
+      </if>
+      <if test="merchantId != null" >
+        MERCHANT_ID,
+      </if>
+      <if test="channelState != null" >
+        CHANNEL_STATE,
+      </if>
+      <if test="revision != null" >
+        REVISION,
+      </if>
+      <if test="className != null" >
+        CLASS_NAME,
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY,
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME,
+      </if>
+      <if test="syncUrl != null" >
+        SYNC_URL,
+      </if>
+      <if test="asynUrl != null" >
+        ASYN_URL,
+      </if>
+      <if test="publicKey != null" >
+        PUBLIC_KEY,
+      </if>
+      <if test="privateKey != null" >
+        PRIVATE_KEY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="channelId != null" >
+        #{channelId,jdbcType=VARCHAR},
+      </if>
+      <if test="channelName != null" >
+        #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null" >
+        #{merchantId,jdbcType=VARCHAR},
+      </if>
+      <if test="channelState != null" >
+        #{channelState,jdbcType=INTEGER},
+      </if>
+      <if test="revision != null" >
+        #{revision,jdbcType=INTEGER},
+      </if>
+      <if test="className != null" >
+        #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncUrl != null" >
+        #{syncUrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="asynUrl != null" >
+        #{asynUrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="publicKey != null" >
+        #{publicKey,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="privateKey != null" >
+        #{privateKey,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zhibinwang.pay.entity.PaymentChannelExample" resultType="java.lang.Integer" >
+    select count(*) from payment_channel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update payment_channel
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.channelId != null" >
+        CHANNEL_ID = #{record.channelId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelName != null" >
+        CHANNEL_NAME = #{record.channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.merchantId != null" >
+        MERCHANT_ID = #{record.merchantId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelState != null" >
+        CHANNEL_STATE = #{record.channelState,jdbcType=INTEGER},
+      </if>
+      <if test="record.revision != null" >
+        REVISION = #{record.revision,jdbcType=INTEGER},
+      </if>
+      <if test="record.className != null" >
+        CLASS_NAME = #{record.className,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdBy != null" >
+        CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdTime != null" >
+        CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedBy != null" >
+        UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedTime != null" >
+        UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.syncUrl != null" >
+        SYNC_URL = #{record.syncUrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.asynUrl != null" >
+        ASYN_URL = #{record.asynUrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.publicKey != null" >
+        PUBLIC_KEY = #{record.publicKey,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.privateKey != null" >
+        PRIVATE_KEY = #{record.privateKey,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update payment_channel
+    set ID = #{record.id,jdbcType=INTEGER},
+      CHANNEL_ID = #{record.channelId,jdbcType=VARCHAR},
+      CHANNEL_NAME = #{record.channelName,jdbcType=VARCHAR},
+      MERCHANT_ID = #{record.merchantId,jdbcType=VARCHAR},
+      CHANNEL_STATE = #{record.channelState,jdbcType=INTEGER},
+      REVISION = #{record.revision,jdbcType=INTEGER},
+      CLASS_NAME = #{record.className,jdbcType=VARCHAR},
+      CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+      SYNC_URL = #{record.syncUrl,jdbcType=LONGVARCHAR},
+      ASYN_URL = #{record.asynUrl,jdbcType=LONGVARCHAR},
+      PUBLIC_KEY = #{record.publicKey,jdbcType=LONGVARCHAR},
+      PRIVATE_KEY = #{record.privateKey,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update payment_channel
+    set ID = #{record.id,jdbcType=INTEGER},
+      CHANNEL_ID = #{record.channelId,jdbcType=VARCHAR},
+      CHANNEL_NAME = #{record.channelName,jdbcType=VARCHAR},
+      MERCHANT_ID = #{record.merchantId,jdbcType=VARCHAR},
+      CHANNEL_STATE = #{record.channelState,jdbcType=INTEGER},
+      REVISION = #{record.revision,jdbcType=INTEGER},
+      CLASS_NAME = #{record.className,jdbcType=VARCHAR},
+      CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhibinwang.pay.entity.PaymentChannel" >
+    update payment_channel
+    <set >
+      <if test="channelName != null" >
+        CHANNEL_NAME = #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null" >
+        MERCHANT_ID = #{merchantId,jdbcType=VARCHAR},
+      </if>
+      <if test="channelState != null" >
+        CHANNEL_STATE = #{channelState,jdbcType=INTEGER},
+      </if>
+      <if test="revision != null" >
+        REVISION = #{revision,jdbcType=INTEGER},
+      </if>
+      <if test="className != null" >
+        CLASS_NAME = #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncUrl != null" >
+        SYNC_URL = #{syncUrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="asynUrl != null" >
+        ASYN_URL = #{asynUrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="publicKey != null" >
+        PUBLIC_KEY = #{publicKey,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="privateKey != null" >
+        PRIVATE_KEY = #{privateKey,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+      and CHANNEL_ID = #{channelId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zhibinwang.pay.entity.PaymentChannel" >
+    update payment_channel
+    set CHANNEL_NAME = #{channelName,jdbcType=VARCHAR},
+      MERCHANT_ID = #{merchantId,jdbcType=VARCHAR},
+      CHANNEL_STATE = #{channelState,jdbcType=INTEGER},
+      REVISION = #{revision,jdbcType=INTEGER},
+      CLASS_NAME = #{className,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      SYNC_URL = #{syncUrl,jdbcType=LONGVARCHAR},
+      ASYN_URL = #{asynUrl,jdbcType=LONGVARCHAR},
+      PUBLIC_KEY = #{publicKey,jdbcType=LONGVARCHAR},
+      PRIVATE_KEY = #{privateKey,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+      and CHANNEL_ID = #{channelId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhibinwang.pay.entity.PaymentChannel" >
+    update payment_channel
+    set CHANNEL_NAME = #{channelName,jdbcType=VARCHAR},
+      MERCHANT_ID = #{merchantId,jdbcType=VARCHAR},
+      CHANNEL_STATE = #{channelState,jdbcType=INTEGER},
+      REVISION = #{revision,jdbcType=INTEGER},
+      CLASS_NAME = #{className,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+      and CHANNEL_ID = #{channelId,jdbcType=VARCHAR}
+  </update>
+</mapper>

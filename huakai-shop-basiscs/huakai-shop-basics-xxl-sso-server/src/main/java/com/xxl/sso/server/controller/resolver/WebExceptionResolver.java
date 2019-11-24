@@ -1,7 +1,7 @@
 package com.xxl.sso.server.controller.resolver;
 
+import com.xxl.sso.core.entity.ReturnT;
 import com.xxl.sso.core.exception.XxlSsoException;
-import com.xxl.sso.server.core.result.ReturnT;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;

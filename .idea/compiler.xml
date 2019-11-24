@@ -6,31 +6,40 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="huakai-shop-service-api-member" />
+        <module name="hukai-shop-service-impl-pay" />
+        <module name="huakai-shop-api-goods-dto" />
         <module name="huakaishopapimemberdto" />
-        <module name="huakai-shop-service-impl-member" />
+        <module name="huakai-shop-service-api-goods" />
+        <module name="huakaishopbasicselkkafka" />
         <module name="huakaishopcommoncore" />
-        <module name="huakai-shop-service-api-weixin" />
         <module name="huakai-shop-basics-springcloud-gateway" />
         <module name="huakai-shop-service-impl-weixin" />
+        <module name="huakai-shop-common-core" />
         <module name="huakaishopapiweixindto" />
-        <module name="huakaishopbasicsxxlssoserver" />
+        <module name="huakai-shop-service-api-member" />
+        <module name="huakai-shop-service-api-pay" />
         <module name="huakai-shop-api-member-dto" />
         <module name="huakai-shop-web-common" />
         <module name="huakaishopserviceimplweixin" />
-        <module name="huakai-shop-basics-springcloud-eureka" />
+        <module name="huakai-shop-service-impl-goods" />
+        <module name="huakai-shop-api-pay-dto" />
+        <module name="huakai-shop-service-api-weixin" />
+        <module name="huakaishopbasicsxxlssoserver" />
+        <module name="huakaishopserviceapimember" />
         <module name="huakaishopserviceapiweixin" />
         <module name="huakai-shop-api-weixin-dto" />
-        <module name="huakaishopbasiscs" />
-        <module name="huakaishopserviceapimember" />
+        <module name="huakai-shop-service-impl-member" />
+        <module name="huakai-shop-basics-springcloud-eureka" />
         <module name="huakai-shop-portal-web" />
-        <module name="huakai-shop-common-core" />
+        <module name="huakaishopbasiscs" />
         <module name="huakaishopserviceimplmember" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="huakai-shop-basics-elk-kafka" target="1.8" />
       <module name="huakaishopapientity" target="1.8" />
       <module name="huakaishopapiweixinentity" target="1.8" />
+      <module name="huakaishopbasicselkkafka" target="1.8" />
       <module name="huakaishopbasicsspringcloudeureka" target="1.8" />
       <module name="huakaishopbasicsspringcloudgateway" target="1.8" />
       <module name="huakaishopportalweb" target="1.8" />
@@ -38,15 +47,21 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="huakai-shop-api-goods-dto" options="-parameters" />
       <module name="huakai-shop-api-member-dto" options="-parameters" />
+      <module name="huakai-shop-api-pay-dto" options="-parameters" />
       <module name="huakai-shop-api-weixin-dto" options="-parameters" />
+      <module name="huakai-shop-basics-elk-kafka" options="-parameters" />
       <module name="huakai-shop-basics-springcloud-eureka" options="-parameters" />
       <module name="huakai-shop-basics-springcloud-gateway" options="-parameters" />
       <module name="huakai-shop-basiscs" options="-parameters" />
       <module name="huakai-shop-common-core" options="-parameters" />
       <module name="huakai-shop-portal-web" options="-parameters" />
+      <module name="huakai-shop-service-api-goods" options="-parameters" />
       <module name="huakai-shop-service-api-member" options="-parameters" />
+      <module name="huakai-shop-service-api-pay" options="-parameters" />
       <module name="huakai-shop-service-api-weixin" options="-parameters" />
+      <module name="huakai-shop-service-impl-goods" options="-parameters" />
       <module name="huakai-shop-service-impl-member" options="-parameters" />
       <module name="huakai-shop-service-impl-weixin" options="-parameters" />
       <module name="huakai-shop-web-common" options="-parameters" />
@@ -55,6 +70,7 @@
       <module name="huakaishopapimemberdto" options="-parameters" />
       <module name="huakaishopapiweixindto" options="-parameters" />
       <module name="huakaishopapiweixinentity" options="-parameters" />
+      <module name="huakaishopbasicselkkafka" options="-parameters" />
       <module name="huakaishopbasicsspringcloudeureka" options="-parameters" />
       <module name="huakaishopbasicsspringcloudgateway" options="-parameters" />
       <module name="huakaishopbasicsxxlssoserver" options="-parameters" />
@@ -69,6 +85,7 @@
       <module name="huakaishopserviceimpl" options="-parameters" />
       <module name="huakaishopserviceimplmember" options="-parameters" />
       <module name="huakaishopserviceimplweixin" options="-parameters" />
+      <module name="hukai-shop-service-impl-pay" options="-parameters" />
     </option>
   </component>
 </project>

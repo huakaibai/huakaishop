@@ -2,15 +2,14 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8100/eureka
+
 server:
-  port: 8300
+  port: 8500
 spring:
   application:
-    name: app-huakai-member
+    name: app-huakai-pay
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     password: 123456
-    url: jdbc:mysql://127.0.0.1:3340/huakai_pay
+    url: jdbc:mysql://127.0.0.1:3340/huakai_member
     username: root
-
-
