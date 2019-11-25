@@ -11,5 +11,5 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     password: 123456
-    url: jdbc:mysql://127.0.0.1:3340/huakai_member
+    url: jdbc:mysql://127.0.0.1:3340/huakai_pay
     username: root

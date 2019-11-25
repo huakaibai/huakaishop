@@ -1,8 +1,9 @@
-package com.zhibinwang.base;
+package com.zhibinwang.web.controller;
 
 import cn.hutool.http.useragent.Browser;
 import cn.hutool.http.useragent.UserAgent;
 import cn.hutool.http.useragent.UserAgentUtil;
+import com.zhibinwang.base.BaseResponse;
 import com.zhibinwang.constants.Constants;
 import org.springframework.ui.Model;
 

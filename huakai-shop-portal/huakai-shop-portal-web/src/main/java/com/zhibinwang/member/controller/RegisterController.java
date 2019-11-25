@@ -2,12 +2,11 @@ package com.zhibinwang.member.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zhibinwang.base.BaseResponse;
-import com.zhibinwang.base.BaseWebController;
+import com.zhibinwang.web.controller.BaseWebController;
 import com.zhibinwang.member.feign.MemberRegisterServiceFeignClient;
 import com.zhibinwang.member.input.dto.UserInputDTO;
 import com.zhibinwang.member.vo.RegisterVo;
 import com.zhibinwang.web.bean.HuakaiBeanUtils;
-import com.zhibinwang.web.code.RandomValidateCodeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,8 +16,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import javax.servlet.http.HttpSession;
 
 @Controller
 @Slf4j

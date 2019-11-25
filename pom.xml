@@ -16,6 +16,7 @@
         <module>huakai-shop-common</module>
         <module>huakai-shop-api-dto</module>
         <module>huakai-shop-portal</module>
+        <module>huakai-shop-pay-plugin</module>
     </modules>
 
     <parent>

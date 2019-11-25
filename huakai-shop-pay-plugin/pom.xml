@@ -9,11 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>huakai-shop-portal</artifactId>
+    <artifactId>huakai-shop-pay-plugin</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>huakai-shop-portal-web</module>
-        <module>huakai-shop-pay-web</module>
+        <module>huakai-shop-pay-ali-plugin</module>
+        <module>huakai-shop-pay-union-plugin</module>
     </modules>
 
 

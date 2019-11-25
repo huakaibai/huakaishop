@@ -47,6 +47,9 @@ public interface Constants {
 
 	String PAY_TOKEN_PRIX = "pay_";
 
+	//支付订单过期时间
+	Long PAY_TOKEN_TIME = (20L * 60L );
+
 
 
 }

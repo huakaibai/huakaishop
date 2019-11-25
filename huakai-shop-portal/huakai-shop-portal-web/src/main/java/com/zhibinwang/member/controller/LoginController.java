@@ -2,7 +2,7 @@ package com.zhibinwang.member.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zhibinwang.base.BaseResponse;
-import com.zhibinwang.base.BaseWebController;
+import com.zhibinwang.web.controller.BaseWebController;
 import com.zhibinwang.core.token.LoginType;
 import com.zhibinwang.member.feign.MemberLoginServiceFiengClient;
 import com.zhibinwang.member.input.dto.UserLoginInpDTO;
