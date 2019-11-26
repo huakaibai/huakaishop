@@ -1,6 +1,5 @@
 package com.zhibinwang.web.controller;
 
-import cn.hutool.http.useragent.Browser;
 import cn.hutool.http.useragent.UserAgent;
 import cn.hutool.http.useragent.UserAgentUtil;
 import com.zhibinwang.base.BaseResponse;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class BaseWebController {
 
-	protected static final String ERROR_500_FTL = "500.ftl";
+	protected static final String ERROR_500_FTL = "500";
 
 	public Boolean isSuccess(BaseResponse<?> baseResp) {
 		if (baseResp == null) {

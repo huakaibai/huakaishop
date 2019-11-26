@@ -12,15 +12,15 @@
     <artifactId>huakai-shop-pay-web</artifactId>
 
     <dependencies>
-        <dependency>
+   <!--     <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session-data-redis</artifactId>
-        </dependency>
+        </dependency>-->
 
-        <dependency>
+    <!--    <dependency>
             <groupId>com.xuxueli</groupId>
             <artifactId>xxl-sso-core</artifactId>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -26,7 +26,7 @@ public class PayMentTransacInfoDTO {
 
 
     @ApiModelProperty(value = "用户信息")
-    private String userId;
+    private Integer userId;
     @ApiModelProperty(value = "支付状态")
     private Integer paymentStatus;
 

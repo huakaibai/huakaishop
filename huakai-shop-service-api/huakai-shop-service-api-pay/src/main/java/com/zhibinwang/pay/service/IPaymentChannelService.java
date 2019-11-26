@@ -17,10 +17,9 @@ import java.util.List;
  * @desc 支付渠道信息接口
  **/
 @Api("支付渠道接口")
-@RequestMapping("/pay")
 public interface IPaymentChannelService {
 
     @PostMapping("/selectAllChannel")
     @ApiOperation(value = "获取支付渠道信息")
-    BaseResponse<List<PaymentChannelDTO>> selectAllChannel();
+    List<PaymentChannelDTO> selectAllChannel();
 }

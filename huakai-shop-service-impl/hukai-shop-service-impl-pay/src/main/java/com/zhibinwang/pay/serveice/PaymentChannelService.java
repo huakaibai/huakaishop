@@ -2,6 +2,7 @@ package com.zhibinwang.pay.serveice;
 
 import com.zhibinwang.base.BaseApiService;
 import com.zhibinwang.base.BaseResponse;
+import com.zhibinwang.core.mapper.MapperUtils;
 import com.zhibinwang.pay.PaymentChannelDTO;
 import com.zhibinwang.pay.entity.PaymentChannel;
 import com.zhibinwang.pay.mapper.PaymentChannelMapper;
@@ -17,15 +18,21 @@ import java.util.List;
  * @desc 支付渠道实现类
  **/
 @RestController
-public class PaymentChannelService extends BaseApiService<List<PaymentChannelDTO>> implements IPaymentChannelService {
+public class PaymentChannelService  implements IPaymentChannelService {
 
 
     @Autowired
     private PaymentChannelMapper paymentChannelMapper;
 
-    public BaseResponse<List<PaymentChannelDTO>> selectAllChannel() {
+    @Override
+    public List<PaymentChannelDTO> selectAllChannel() {
         List<PaymentChannel> paymentChannels = paymentChannelMapper.selectByExample(null);
+        List<PaymentChannelDTO> paymentChannelDTOS = MapperUtils.mapAsList(paymentChannels, PaymentChannelDTO.class);
+        return paymentChannelDTOS;
+    }
 
-        return null;
+
+    public static void main(String[] args) {
+        IPaymentChannelService la = new PaymentChannelService();
     }
 }

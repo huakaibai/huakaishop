@@ -65,6 +65,8 @@ public class PayTransactionServiceImpl extends BaseApiService<JSONObject> implem
         paymentTransaction.setCreatedTime(new Date());
         paymentTransaction.setUpdatedTime(new Date());
         paymentTransaction.setId(snowflake.nextId());
+        paymentTransaction.setUserId(payCratePayTokenDto.getUserId());
+        paymentTransaction.setPayName(payCratePayTokenDto.getPayName());
         paymentTransactionMapper.insert(paymentTransaction);
 
         //根据id生成token

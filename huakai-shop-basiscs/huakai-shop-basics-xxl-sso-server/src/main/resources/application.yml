@@ -38,4 +38,6 @@ huakai:
     indexUrl: http://127.0.0.1:8081/
 
 
-
+logging:
+  config: classpath:log/logback-spring.xml
+  path: D:\log\xxlssoserver

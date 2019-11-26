@@ -28,7 +28,10 @@ public class PayCratePayTokenDto {
 
 
     @ApiModelProperty(value = "用户信息")
-    @NotBlank(message = "用户Id不能为空")
-    private String userId;
+    @NotNull(message = "用户Id不能为空")
+    private Integer userId;
+
+    @ApiModelProperty(value = "商品名称")
+    private String payName;
 
 }

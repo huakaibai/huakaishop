@@ -13,13 +13,13 @@ spring:
       - classpath:/templates
   application:
     name: app-huakai-pay-web
-  session:
-    store-type: redis #指定redis实现spring session
-    timeout: 500 # Session 过期时间，单位s
-
-  redis:
-    host: 127.0.0.1
-    port: 6379
+#  session:
+#    store-type: redis #指定redis实现spring session
+#    timeout: 500 # Session 过期时间，单位s
+#
+#  redis:
+#    host: 127.0.0.1
+#    port: 6379
 
 ###服务注册到eureka地址
 eureka:
@@ -28,14 +28,16 @@ eureka:
       defaultZone: http://localhost:8100/eureka
 server:
   port: 8081
-
-xxl-sso:
-  excluded:
-    paths:
-xxl:
-  sso:
-    server: http://xxlssoserver.com:8082/xxl-sso-server
-    logout:
-      path: /logout
-    redis:
-      address: redis://127.0.0.1:6379
+#ribbon:
+#  ReadTimeout: 60000
+#  ConnectTimeout: 60000
+#xxl-sso:
+#  excluded:
+#    paths:
+#xxl:
+#  sso:
+#    server: http://xxlssoserver.com:8082/xxl-sso-server
+#    logout:
+#      path: /logout
+#    redis:
+#      address: redis://127.0.0.1:6379

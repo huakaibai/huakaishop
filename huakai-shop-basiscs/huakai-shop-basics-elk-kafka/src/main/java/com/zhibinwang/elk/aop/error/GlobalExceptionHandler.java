@@ -12,6 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
+/**
+ * @author 花开
+ */
 @ControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {

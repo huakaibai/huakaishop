@@ -1,5 +1,6 @@
 package com.xxl.sso.server;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -15,10 +16,13 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 		DataSourceTransactionManagerAutoConfiguration.class, HibernateJpaAutoConfiguration.class })
 @EnableFeignClients
 @EnableEurekaClient
+@Slf4j
 public class XxlSsoServerApplication {
 
 	public static void main(String[] args) {
-        SpringApplication.run(XxlSsoServerApplication.class, args);
+        log.info("xxlServer正在启动");
+		SpringApplication.run(XxlSsoServerApplication.class, args);
+		log.info("xxlServer启动完成");
 	}
 
 }

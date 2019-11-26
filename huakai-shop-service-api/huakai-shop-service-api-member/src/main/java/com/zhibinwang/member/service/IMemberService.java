@@ -22,7 +22,6 @@ import javax.validation.constraints.NotEmpty;
  * @desc
  **/
 @Api( tags = "会员服务接口")
-@RequestMapping("/member")
 @Validated
 public interface IMemberService {
 

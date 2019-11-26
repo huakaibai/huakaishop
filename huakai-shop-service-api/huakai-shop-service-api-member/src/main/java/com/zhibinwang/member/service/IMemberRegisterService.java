@@ -20,7 +20,6 @@ import javax.validation.constraints.NotEmpty;
  * @author 花开
  */
 @Api(tags = "会员注册接口")
-@RequestMapping("/member")
 @Validated
 public interface IMemberRegisterService {
 	/**

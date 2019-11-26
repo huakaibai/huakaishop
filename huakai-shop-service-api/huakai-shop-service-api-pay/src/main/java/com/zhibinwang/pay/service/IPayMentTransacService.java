@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.constraints.NotBlank;
 
 @Api(tags = "支付接口")
-@RequestMapping("/pay")
 @Validated
 public interface IPayMentTransacService {
 
@@ -27,7 +26,7 @@ public interface IPayMentTransacService {
 	 */
 	@PostMapping("/cratePayToken")
 	@ApiOperation(value = "预支付接口")
-	 BaseResponse<JSONObject> cratePayToken(@RequestBody PayCratePayTokenDto payCratePayTokenDto);
+	 BaseResponse<JSONObject> cratePayToken(@RequestBody  PayCratePayTokenDto payCratePayTokenDto);
 
 	@PostMapping("/payHtml")
 	@ApiOperation(value = "提交支付表单参数")

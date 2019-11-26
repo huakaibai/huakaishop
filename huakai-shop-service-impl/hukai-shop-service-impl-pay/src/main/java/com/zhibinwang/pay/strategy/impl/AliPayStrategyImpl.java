@@ -13,59 +13,44 @@ import com.zhibinwang.pay.PayMentTransacInfoDTO;
 import com.zhibinwang.pay.entity.PaymentChannel;
 import com.zhibinwang.pay.entity.PaymentTransaction;
 import com.zhibinwang.pay.strategy.PayStrategy;
+import lombok.extern.slf4j.Slf4j;
+
+import java.math.BigDecimal;
 
 /**
  * @author zhibin.wang
  * @create 2019-11-25 14:47
  * @desc 阿里支付策略模式实现类
+ * @link https://docs.open.alipay.com/api_1/alipay.trade.page.pay
  **/
+@Slf4j
 public class AliPayStrategyImpl implements PayStrategy {
 
     @Override
-    public String toPayHtml(PaymentChannel paymentChannel, PayMentTransacInfoDTO payMentTransacInfoDTO) throws AlipayApiException {
-     /*   AlipayClient alipayClient = new DefaultAlipayClient("https://openapi.alipay.com/gateway.do", APP_ID, APP_PRIVATE_KEY, FORMAT, CHARSET, ALIPAY_PUBLIC_KEY, SIGN_TYPE); //获得初始化的AlipayClient
-        AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();//创建API对应的request
-        alipayRequest.setReturnUrl("http://domain.com/CallBack/return_url.jsp");
-        alipayRequest.setNotifyUrl("http://domain.com/CallBack/notify_url.jsp");//在公共参数中设置回跳和通知地址
+    public String toPayHtml(PaymentChannel paymentChannel, PayMentTransacInfoDTO payMentTransacInfoDTO) {
 
-
-        alipayRequest.setBizContent("{" +
-                "    \"out_trade_no\":\"20150320010101001\"," +
-                "    \"product_code\":\"FAST_INSTANT_TRADE_PAY\"," +
-                "    \"total_amount\":88.88," +
-                "    \"subject\":\"Iphone6 16G\"," +
-                "    \"body\":\"Iphone6 16G\"," +
-                "    \"passback_params\":\"merchantBizType%3d3C%26merchantBizNo%3d2016010101111\"," +
-                "    \"extend_params\":{" +
-                "    \"sys_service_provider_id\":\"2088511833207846\"" +
-                "    }"+
-                "  }");//填充业务参数
-        String form="";
-        try {
-            form = alipayClient.pageExecute(alipayRequest).getBody(); //调用SDK生成表单
-        } catch (AlipayApiException e) {
-            e.printStackTrace();
-        }*/
         AliPayConfig aliPayConfig = AliPayConfig.getAliPayConfig();
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("out_trade_no",payMentTransacInfoDTO.getOrderId());
+        jsonObject.put("out_trade_no",payMentTransacInfoDTO.getId()+"");
         jsonObject.put("product_code","FAST_INSTANT_TRADE_PAY");
-        jsonObject.put("total_amount","8812");
-        jsonObject.put("subject","8812");
-        jsonObject.put("body","8812");
-        jsonObject.put("passback_params","8812");
-        JSONObject sysServiceObject = new JSONObject();
+        jsonObject.put("total_amount",changeF2Y(payMentTransacInfoDTO.getPayAmount()+""));
+        //订单标题
+        jsonObject.put("subject",payMentTransacInfoDTO.getPayName());
+        //订单描述
+        jsonObject.put("body",payMentTransacInfoDTO.getPayName());
+        //jsonObject.put("passback_params","8812");
+     /*   JSONObject sysServiceObject = new JSONObject();
         sysServiceObject.put("sys_service_provider_id","");
-        jsonObject.put("extend_params",sysServiceObject);
+        jsonObject.put("extend_params",sysServiceObject);*/
 
         //构造client
         CertAlipayRequest certAlipayRequest = new CertAlipayRequest();
 //设置网关地址
-        certAlipayRequest.setServerUrl("https://openapi.alipay.com/gateway.do");
+        certAlipayRequest.setServerUrl("https://openapi.alipaydev.com/gateway.do");
 //设置应用Id
-       // certAlipayRequest.setAppId(app_id);
+        certAlipayRequest.setAppId(paymentChannel.getMerchantId());
 //设置应用私钥
-     //   certAlipayRequest.setPrivateKey(privateKey);
+        certAlipayRequest.setPrivateKey(paymentChannel.getPrivateKey());
 //设置请求格式，固定值json
         certAlipayRequest.setFormat("json");
 //设置字符集
@@ -79,25 +64,44 @@ public class AliPayStrategyImpl implements PayStrategy {
 //设置支付宝根证书路径
         certAlipayRequest.setRootCertPath(aliPayConfig.getAlipayRootCertPath());
 //构造client
-        AlipayClient alipayClient1 = new DefaultAlipayClient(certAlipayRequest);
-//构造API请求
-        AlipayTradeQueryRequest request = new AlipayTradeQueryRequest();
-        request.setReturnUrl(paymentChannel.getAsynUrl());
-        request.setNotifyUrl(paymentChannel.getSyncUrl());//在公共参数中设置回跳和通知地址
-        request.setBizContent("{" +
-                "    \"out_trade_no\":\"20150320010101001\"," +
-                "    \"product_code\":\"FAST_INSTANT_TRADE_PAY\"," +
-                "    \"total_amount\":88.88," +
-                "    \"subject\":\"Iphone6 16G\"," +
-                "    \"body\":\"Iphone6 16G\"," +
-                "    \"passback_params\":\"merchantBizType%3d3C%26merchantBizNo%3d2016010101111\"," +
-                "    \"extend_params\":{" +
-                "    \"sys_service_provider_id\":\"2088511833207846\"" +
-                "    }"+
-                "  }");//填充业务参数
+        AlipayClient alipayClient1 = null;
+        String html = null;
+        try {
+            alipayClient1 = new DefaultAlipayClient(certAlipayRequest);
+            //构造API请求
+            AlipayTradeQueryRequest request = new AlipayTradeQueryRequest();
+            request.setReturnUrl(paymentChannel.getAsynUrl());
+            //在公共参数中设置回跳和通知地址
+            request.setNotifyUrl(paymentChannel.getSyncUrl());
+            //填充业务参数
+            request.setBizContent(jsonObject.toJSONString());
 //发送请求
-        AlipayTradeQueryResponse response = alipayClient1.pageExecute(request);
 
-        return null;
+            AlipayTradeQueryResponse response = alipayClient1.pageExecute(request);
+           html = response.getBody();
+        } catch (AlipayApiException e) {
+            e.printStackTrace();
+           log.error("分装支付订单参数错误:",e);
+        }
+
+        return html;
+    }
+
+
+    /** 金额为分的格式 */
+    public static final String CURRENCY_FEN_REGEX = "\\-?[0-9]+";
+
+    /**
+     * 将分为单位的转换为元 （除100）
+     *
+     * @param amount
+     * @return
+     * @throws Exception
+     */
+    public static String changeF2Y(String amount) {
+        if (!amount.matches(CURRENCY_FEN_REGEX)) {
+            return null;
+        }
+        return BigDecimal.valueOf(Long.valueOf(amount)).divide(new BigDecimal(100)).toString();
     }
 }

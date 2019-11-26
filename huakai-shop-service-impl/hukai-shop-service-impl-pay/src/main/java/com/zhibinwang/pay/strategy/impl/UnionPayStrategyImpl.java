@@ -39,9 +39,9 @@ public class UnionPayStrategyImpl implements PayStrategy {
         requestData.put("channelType", "07");           			  //渠道类型，这个字段区分B2C网关支付和手机wap支付；07：PC,平板  08：手机
 
         /***商户接入参数***/
-        requestData.put("merId", paymentChannel.getChannelId());    	          			  //商户号码，请改成自己申请的正式商户号或者open上注册得来的777测试商户号
+        requestData.put("merId", paymentChannel.getMerchantId());    	          			  //商户号码，请改成自己申请的正式商户号或者open上注册得来的777测试商户号
         requestData.put("accessType", "0");             			  //接入类型，0：直连商户
-        requestData.put("orderId",payMentTransacInfoDTO.getOrderId());             //商户订单号，8-40位数字字母，不能含“-”或“_”，可以自行定制规则
+        requestData.put("orderId",payMentTransacInfoDTO.getId()+"");             //商户订单号，8-40位数字字母，不能含“-”或“_”，可以自行定制规则
         requestData.put("txnTime",  DateUtil.format(new Date(), "yyyyMMddHHmmss"));
         //订单发送时间，取系统时间，格式为yyyyMMddHHmmss，必须取当前时间，否则会报txnTime无效
         requestData.put("currencyCode", "156");         			  //交易币种（境内商户一般是156 人民币）
