@@ -1,5 +1,6 @@
 package com.zhibinwang.pay.strategy;
 
+import com.alipay.api.AlipayApiException;
 import com.zhibinwang.pay.PayMentTransacInfoDTO;
 import com.zhibinwang.pay.PaymentChannelDTO;
 import com.zhibinwang.pay.entity.PaymentChannel;
@@ -11,5 +12,5 @@ import com.zhibinwang.pay.entity.PaymentChannel;
  **/
 public interface PayStrategy {
 
-    String toPayHtml(PaymentChannel paymentChannel, PayMentTransacInfoDTO payMentTransacInfoDTO);
+    String toPayHtml(PaymentChannel paymentChannel, PayMentTransacInfoDTO payMentTransacInfoDTO) throws AlipayApiException;
 }

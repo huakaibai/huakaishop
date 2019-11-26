@@ -1,0 +1,9 @@
+#签名类型
+alipay.sign_type=
+#应用公钥证书路径
+alipay.app_application_cert_path=
+#支付宝公钥证书路径
+alipay.app_cert_path=
+#支付宝根证书路径
+alipay.alipay_root_cert_path=
+alipay.charset = UTF-8
