@@ -23,7 +23,7 @@
         </dependency>
 
 
-        <dependency>
+       <!-- <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
             <version>5.1.4.RELEASE</version>
@@ -34,7 +34,7 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
             <scope>compile</scope>
-        </dependency>
+        </dependency>-->
         <!-- SpringBoot-整合Web组件 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -43,8 +43,6 @@
         <dependency>
             <groupId>com.zhibinwang</groupId>
             <artifactId>huakai-shop-common-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 

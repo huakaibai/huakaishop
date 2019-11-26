@@ -15,13 +15,11 @@
         <dependency>
             <groupId>com.zhibinwang</groupId>
             <artifactId>huakai-shop-service-api-weixin</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>com.github.binarywang</groupId>
             <artifactId>weixin-java-mp</artifactId>
-            <version>3.3.0</version>
         </dependency>
 
 

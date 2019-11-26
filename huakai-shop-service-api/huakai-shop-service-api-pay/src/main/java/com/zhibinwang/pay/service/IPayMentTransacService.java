@@ -36,6 +36,6 @@ public interface IPayMentTransacService {
 			@ApiImplicitParam(paramType = "query", name = "channelId", dataType = "String", required = true, value = "支付渠道id")
 
 	})
-	BaseResponse<JSONObject>  payHtml(@RequestParam("token") @NotBlank(message = "token 不能为空") String token, @RequestParam("channelId") @NotBlank(message = "渠道id不能为空") String channelId);
+	BaseResponse<JSONObject>  payHtml(@RequestParam("token") @NotBlank(message = "token 不能为空") String token, @RequestParam("channelId") @NotBlank(message = "渠道id不能为空") String channelId) ;
 
 }

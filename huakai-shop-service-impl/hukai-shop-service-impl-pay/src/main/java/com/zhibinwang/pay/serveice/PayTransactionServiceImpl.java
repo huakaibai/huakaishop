@@ -4,6 +4,7 @@ import cn.hutool.core.lang.Snowflake;
 import cn.hutool.core.util.IdUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alipay.api.AlipayApiException;
 import com.zhibinwang.base.BaseApiService;
 import com.zhibinwang.base.BaseResponse;
 import com.zhibinwang.constants.Constants;
@@ -77,7 +78,7 @@ public class PayTransactionServiceImpl extends BaseApiService<JSONObject> implem
     }
 
     @Override
-    public BaseResponse<JSONObject> payHtml(String token,  String channelId) {
+    public BaseResponse<JSONObject> payHtml(String token,  String channelId)  {
         
         // 获取支付订单信息
         BaseResponse<PayMentTransacInfoDTO> payTransactionInfoByToken = payMentTransacInfoService.getPayTransactionInfoByToken(token);
@@ -105,7 +106,12 @@ public class PayTransactionServiceImpl extends BaseApiService<JSONObject> implem
             return setResultError("获取支付策略类失败！");
         }
         // 根据具体的策略实现类封装返回的html
-        String html = payStrategy.toPayHtml(paymentChannel, payMentTransacInfoDTO);
+        String html = null;
+        try {
+            html = payStrategy.toPayHtml(paymentChannel, payMentTransacInfoDTO);
+        } catch (AlipayApiException e) {
+            e.printStackTrace();
+        }
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("payHtml",html);
         return setResultSuccess(jsonObject);

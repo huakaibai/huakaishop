@@ -23,7 +23,32 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.7.RELEASE</version>
+
     </parent>
+
+    <properties>
+        <fastJson.version>1.2.30</fastJson.version>
+        <apollo.version>1.0.0</apollo.version>
+        <commons-net.vsersion>3.3</commons-net.vsersion>
+        <commons-codec.version>1.6</commons-codec.version>
+        <swagger.version>2.9.2</swagger.version>
+        <xxl-sso.version>1.1.1-SNAPSHOT</xxl-sso.version>
+        <jedis.version>3.0.0</jedis.version>
+        <tengxun-sdk.version>1.0</tengxun-sdk.version>
+        <weixin-java-mp.version>3.3.0</weixin-java-mp.version>
+        <hutool.version>5.0.3</hutool.version>
+        <myatis-springboot.version>1.1.1</myatis-springboot.version>
+        <orika.version>1.5.2</orika.version>
+        <alipaysdk.version>4.8.62.ALL</alipaysdk.version>
+        <bcprov-jdk15on.version>1.54</bcprov-jdk15on.version>
+        <huakai-shop-common-core.version>1.0-SNAPSHOT</huakai-shop-common-core.version>
+        <huakai-shop-web-common.version>1.0-SNAPSHOT</huakai-shop-web-common.version>
+        <huakai-shop-service-api-goods.version>1.0-SNAPSHOT</huakai-shop-service-api-goods.version>
+        <huakai-shop-service-api-pay.version>1.0-SNAPSHOT</huakai-shop-service-api-pay.version>
+        <huakai-shop-service-api-member.version>1.0-SNAPSHOT</huakai-shop-service-api-member.version>
+        <huakai-shop-service-api-weixin.version>1.0-SNAPSHOT</huakai-shop-service-api-weixin.version>
+    </properties>
+
     <dependencies>
         <!-- 集成commons工具类 -->
         <dependency>
@@ -44,7 +69,6 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.30</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -53,38 +77,35 @@
         <dependency>
             <groupId>commons-net</groupId>
             <artifactId>commons-net</artifactId>
-            <version>3.3</version>
         </dependency>
         <dependency>
             <groupId>dom4j</groupId>
             <artifactId>dom4j</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>20.0</version>
-        </dependency>
+        <!--   <dependency>
+               <groupId>com.google.guava</groupId>
+               <artifactId>guava</artifactId>
+               <version>20.0</version>
+           </dependency>-->
 
         <!-- SpringBoot整合eureka客户端 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>com.ctrip.framework.apollo</groupId>
-            <artifactId>apollo-client</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ctrip.framework.apollo</groupId>
-            <artifactId>apollo-core</artifactId>
-            <version>1.0.0</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-core</artifactId>
+        </dependency>
+
     </dependencies>
     <!-- 管理依赖 -->
     <dependencyManagement>
@@ -96,6 +117,131 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastJson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-net</groupId>
+                <artifactId>commons-net</artifactId>
+                <version>${commons-net.vsersion}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcprov-jdk15on</artifactId>
+                <version>${bcprov-jdk15on.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${commons-codec.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.ctrip.framework.apollo</groupId>
+                <artifactId>apollo-client</artifactId>
+                <version>${apollo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ctrip.framework.apollo</groupId>
+                <artifactId>apollo-core</artifactId>
+                <version>${apollo.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xuxueli</groupId>
+                <artifactId>xxl-sso-core</artifactId>
+                <version>${xxl-sso.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${jedis.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.tengxun</groupId>
+                <artifactId>sdk4j</artifactId>
+                <version>${tengxun-sdk.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-mp</artifactId>
+                <version>${weixin-java-mp.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <!-- mybatis相关依赖 -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${myatis-springboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ma.glasnost.orika</groupId>
+                <artifactId>orika-core</artifactId>
+                <version>${orika.version}</version><!-- or latest version -->
+            </dependency>
+            <dependency>
+                <groupId>com.alipay.sdk</groupId>
+                <artifactId>alipay-sdk-java</artifactId>
+                <version>${alipaysdk.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zhibinwang</groupId>
+                <artifactId>huakai-shop-common-core</artifactId>
+                <version>${huakai-shop-common-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zhibinwang</groupId>
+                <artifactId>huakai-shop-web-common</artifactId>
+                <version>${huakai-shop-web-common.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zhibinwang</groupId>
+                <artifactId>huakai-shop-service-api-member</artifactId>
+                <version>${huakai-shop-service-api-member.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zhibinwang</groupId>
+                <artifactId>huakai-shop-service-api-pay</artifactId>
+                <version>${huakai-shop-service-api-pay.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zhibinwang</groupId>
+                <artifactId>huakai-shop-service-api-goods</artifactId>
+                <version>${huakai-shop-service-api-goods.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zhibinwang</groupId>
+                <artifactId>huakai-shop-service-api-weixin</artifactId>
+                <version>${huakai-shop-service-api-weixin.version}</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
     <!-- 注意： 这里必须要添加， 否者各种依赖有问题 -->
