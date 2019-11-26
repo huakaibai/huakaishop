@@ -1,6 +1,7 @@
 package com.zhibinwang.elk.aop.error;
 
 import com.alibaba.fastjson.JSONObject;
+import com.zhibinwang.elk.kafka.KafkaSender;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
