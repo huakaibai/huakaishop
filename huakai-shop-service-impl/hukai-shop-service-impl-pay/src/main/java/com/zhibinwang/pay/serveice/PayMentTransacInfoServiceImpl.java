@@ -6,6 +6,7 @@ import com.zhibinwang.core.bin.HuakaiBeanUtils;
 import com.zhibinwang.core.token.GenerateToken;
 import com.zhibinwang.pay.PayMentTransacInfoDTO;
 import com.zhibinwang.pay.entity.PaymentTransaction;
+import com.zhibinwang.pay.enu.PayStatu;
 import com.zhibinwang.pay.mapper.PaymentTransactionMapper;
 import com.zhibinwang.pay.service.IPayMentTransacInfoService;
 import org.apache.commons.lang3.StringUtils;
@@ -40,7 +41,9 @@ public class PayMentTransacInfoServiceImpl extends BaseApiService<PayMentTransac
         if (paymentTransaction == null){
             return setResultError("订单不存在");
         }
-
+        if (PayStatu.UN_PAY.getValue() != paymentTransaction.getPaymentStatus()){
+            return setResultError("订单支付状态不正确");
+        }
         return setResultSuccessByT(paymentTransaction);
     }
 

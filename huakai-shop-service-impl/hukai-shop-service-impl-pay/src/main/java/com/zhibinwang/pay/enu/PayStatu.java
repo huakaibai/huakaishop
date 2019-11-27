@@ -9,7 +9,7 @@ import lombok.Data;
  **/
 
 public enum PayStatu {
-    UN_PAY(0),PAY_SUC(1),PAY_TIMEOUT(2),PAY_FAILED(3);
+    UN_PAY(0),PAY_SUC(1),PAY_TIMEOUT(2),PAY_FAILED(3),PAY_COMPLETE(4);
 
     private int value;
     PayStatu(int value) {

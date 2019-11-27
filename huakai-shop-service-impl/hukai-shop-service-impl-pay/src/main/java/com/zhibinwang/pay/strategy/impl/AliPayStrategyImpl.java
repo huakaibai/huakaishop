@@ -26,10 +26,12 @@ import java.math.BigDecimal;
 @Slf4j
 public class AliPayStrategyImpl implements PayStrategy {
 
+   static final AliPayConfig aliPayConfig = AliPayConfig.getAliPayConfig();
+
     @Override
     public String toPayHtml(PaymentChannel paymentChannel, PayMentTransacInfoDTO payMentTransacInfoDTO) {
 
-        AliPayConfig aliPayConfig = AliPayConfig.getAliPayConfig();
+
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("out_trade_no",payMentTransacInfoDTO.getId()+"");
         jsonObject.put("product_code","FAST_INSTANT_TRADE_PAY");
@@ -45,7 +47,7 @@ public class AliPayStrategyImpl implements PayStrategy {
 
         //构造client
         CertAlipayRequest certAlipayRequest = new CertAlipayRequest();
-//设置网关地址
+//设置网关地址 TODO
         certAlipayRequest.setServerUrl("https://openapi.alipaydev.com/gateway.do");
 //设置应用Id
         certAlipayRequest.setAppId(paymentChannel.getMerchantId());

@@ -1,5 +1,6 @@
 package com.zhibinwang.pay.mapper;
 
+import com.zhibinwang.pay.entity.PaymentTransactionExample;
 import com.zhibinwang.pay.entity.PaymentTransactionLog;
 import com.zhibinwang.pay.entity.PaymentTransactionLogExample;
 import java.util.List;
@@ -18,7 +19,7 @@ public interface PaymentTransactionLogMapper {
 
     List<PaymentTransactionLog> selectByExampleWithBLOBs(PaymentTransactionLogExample example);
 
-    List<PaymentTransactionLog> selectByExample(PaymentTransactionLogExample example);
+    List<PaymentTransactionLog> selectByExample(PaymentTransactionExample example);
 
     PaymentTransactionLog selectByPrimaryKey(Integer id);
 

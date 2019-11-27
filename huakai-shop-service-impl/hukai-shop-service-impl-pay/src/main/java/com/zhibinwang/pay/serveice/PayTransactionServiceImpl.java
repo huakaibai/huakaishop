@@ -116,6 +116,9 @@ public class PayTransactionServiceImpl extends BaseApiService<JSONObject> implem
         }
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("payHtml",html);
+        if (html != null){
+            //更新状态为支付中 TODO
+        }
         return setResultSuccess(jsonObject);
     }
 
