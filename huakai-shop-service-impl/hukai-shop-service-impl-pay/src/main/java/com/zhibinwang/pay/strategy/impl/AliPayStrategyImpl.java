@@ -7,6 +7,7 @@ import com.alipay.api.CertAlipayRequest;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.alipay.api.request.AlipayTradeQueryRequest;
+import com.alipay.api.response.AlipayTradePagePayResponse;
 import com.alipay.api.response.AlipayTradeQueryResponse;
 import com.alipay.sdk.AliPayConfig;
 import com.zhibinwang.pay.PayMentTransacInfoDTO;
@@ -71,7 +72,7 @@ public class AliPayStrategyImpl implements PayStrategy {
         try {
             alipayClient1 = new DefaultAlipayClient(certAlipayRequest);
             //构造API请求
-            AlipayTradeQueryRequest request = new AlipayTradeQueryRequest();
+            AlipayTradePagePayRequest request = new AlipayTradePagePayRequest();
             request.setReturnUrl(paymentChannel.getAsynUrl());
             //在公共参数中设置回跳和通知地址
             request.setNotifyUrl(paymentChannel.getSyncUrl());
@@ -79,8 +80,9 @@ public class AliPayStrategyImpl implements PayStrategy {
             request.setBizContent(jsonObject.toJSONString());
 //发送请求
 
-            AlipayTradeQueryResponse response = alipayClient1.pageExecute(request);
+            AlipayTradePagePayResponse response = alipayClient1.pageExecute(request);
            html = response.getBody();
+           log.info("支付宝交易html={}",html);
         } catch (AlipayApiException e) {
             e.printStackTrace();
            log.error("分装支付订单参数错误:",e);

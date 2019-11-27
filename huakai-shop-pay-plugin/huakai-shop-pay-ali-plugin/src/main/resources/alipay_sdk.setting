@@ -1,7 +1,7 @@
 #签名类型
 alipay.sign_type = RSA2
 #应用公钥证书路径
-alipay.app_application_cert_path = D:\certs\huakai.shop.com.csr
+alipay.app_application_cert_path = D:\certs\appCertPublicKey.crt
 #支付宝公钥证书路径
 alipay.app_cert_path = D:\certs\alipayCertPublicKey_RSA2.crt
 #支付宝根证书路径

@@ -26,7 +26,7 @@ public class UnionPayStrategyImpl implements PayStrategy {
     @Override
     public String toPayHtml(PaymentChannel paymentChannel, PayMentTransacInfoDTO payMentTransacInfoDTO) {
 
-        Map<String, String> requestData = new HashMap<String, String>();
+        Map<String, String> requestData = new HashMap();
 
 
         /***银联全渠道系统，产品参数，除了encoding自行选择外其他不需修改***/
@@ -54,6 +54,7 @@ public class UnionPayStrategyImpl implements PayStrategy {
         //如果想要实现过几秒中自动跳转回商户页面权限，需联系银联业务申请开通自动返回商户权限
         //异步通知参数详见open.unionpay.com帮助中心 下载  产品接口规范  网关支付产品接口规范 消费交易 商户通知
         requestData.put("frontUrl", paymentChannel.getSyncUrl());
+        log.info("frontUrl={}",paymentChannel.getSyncUrl());
 
         //后台通知地址（需设置为【外网】能访问 http https均可），支付成功后银联会自动将异步通知报文post到商户上送的该地址，失败的交易银联不会发送后台通知
         //后台通知参数详见open.unionpay.com帮助中心 下载  产品接口规范  网关支付产品接口规范 消费交易 商户通知
@@ -61,13 +62,13 @@ public class UnionPayStrategyImpl implements PayStrategy {
         //    4.如果银联通知服务器发送通知后10秒内未收到返回状态码或者应答码非http200，那么银联会间隔一段时间再次发送。总共发送5次，每次的间隔时间为0,1,2,4分钟。
         //    5.后台通知地址如果上送了带有？的参数，例如：http://abc/web?a=b&c=d 在后台通知处理程序验证签名之前需要编写逻辑将这些字段去掉再验签，否则将会验签失败
         requestData.put("backUrl", paymentChannel.getAsynUrl());
-
+        log.info("backUrl={}",paymentChannel.getAsynUrl());
         // 订单超时时间。
         // 超过此时间后，除网银交易外，其他交易银联系统会拒绝受理，提示超时。 跳转银行网银交易如果超时后交易成功，会自动退款，大约5个工作日金额返还到持卡人账户。
         // 此时间建议取支付时的北京时间加15分钟。
         // 超过超时时间调查询接口应答origRespCode不是A6或者00的就可以判断为失败。
-        requestData.put("payTimeout", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date().getTime() + 15 * 60 * 1000));
-
+        requestData.put("payTimeout", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date().getTime()+ 15 * 60 * 1000));
+        log.info("requestData={}",requestData);
         //////////////////////////////////////////////////
         //
         //       报文中特殊用法请查看 PCwap网关跳转支付特殊用法.txt

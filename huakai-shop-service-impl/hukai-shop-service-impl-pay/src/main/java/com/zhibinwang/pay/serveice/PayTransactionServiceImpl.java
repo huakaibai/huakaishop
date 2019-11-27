@@ -96,7 +96,7 @@ public class PayTransactionServiceImpl extends BaseApiService<JSONObject> implem
         criteria.andChannelIdEqualTo(channelId);
         // 渠道信息0可用，1不可用
         criteria.andChannelStateEqualTo(0);
-        List<PaymentChannel> paymentChannels = paymentChannelMapper.selectByExample(example);
+        List<PaymentChannel> paymentChannels = paymentChannelMapper.selectByExampleWithBLOBs(example);
         if (paymentChannels == null || paymentChannels.size() < 1){
            return  setResultError("根据支付渠道id，没有查询到对应数据");
         }
