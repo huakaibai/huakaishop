@@ -58,9 +58,7 @@ public class AliPayCallbackTemplateImpl extends AbstractPayCallbackTemplate {
         }
         // 打印请求报文
         log.info("{}通知请求参数:reqParam={}", logPrefix, params);
-        params.put(PayConstant.PAY_CHANNEL, PayConstant.PAY_CHANNEL_ALI);
-        params.put(PayConstant.PAY_ID, params.get("out_trade_no"));
-        params.put(PayConstant.PAY_MONEY, params.get("total_amount"));
+
 
         // 根据支付渠道id获取渠道信息
         PaymentChannelExample example = new PaymentChannelExample();
@@ -84,7 +82,9 @@ public class AliPayCallbackTemplateImpl extends AbstractPayCallbackTemplate {
             params.put(PayConstant.VALIDATE_RESULT, PayConstant.VALIDATE_RESULT_SUC);
             log.info("{}验证签名成功,orderId={}", logPrefix, params.get("orderId"));
         }
-
+        params.put(PayConstant.PAY_CHANNEL, PayConstant.PAY_CHANNEL_ALI);
+        params.put(PayConstant.PAY_ID, params.get("out_trade_no"));
+        params.put(PayConstant.PAY_MONEY, params.get("total_amount"));
         return params;
     }
 

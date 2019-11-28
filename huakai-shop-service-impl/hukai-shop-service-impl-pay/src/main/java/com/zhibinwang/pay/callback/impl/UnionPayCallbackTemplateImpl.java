@@ -60,9 +60,7 @@ public class UnionPayCallbackTemplateImpl extends AbstractPayCallbackTemplate {
                 valideData.put(key, value);
             }
         }
-        valideData.put(PayConstant.PAY_CHANNEL, PayConstant.PAY_CHANNEL_UNION);
-        valideData.put(PayConstant.PAY_ID, valideData.get("orderId"));
-        valideData.put(PayConstant.PAY_MONEY, valideData.get("txnAmt"));
+
         if (!AcpService.validate(valideData, encoding)) {
             valideData.put(PayConstant.VALIDATE_RESULT, PayConstant.VALIDATE_RESULT_FAIL);
 
@@ -74,7 +72,9 @@ public class UnionPayCallbackTemplateImpl extends AbstractPayCallbackTemplate {
 
         }
 
-
+        valideData.put(PayConstant.PAY_CHANNEL, PayConstant.PAY_CHANNEL_UNION);
+        valideData.put(PayConstant.PAY_ID, valideData.get("orderId"));
+        valideData.put(PayConstant.PAY_MONEY, valideData.get("txnAmt"));
         return valideData;
     }
 

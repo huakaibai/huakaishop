@@ -56,6 +56,7 @@ public class PayTransactionServiceImpl extends BaseApiService<JSONObject> implem
     @Override
     public BaseResponse<JSONObject> cratePayToken(@RequestBody PayCratePayTokenDto payCratePayTokenDto) {
 
+        //TODO 根据订单id查询是否插入数据
         PaymentTransaction paymentTransaction = new PaymentTransaction();
         paymentTransaction.setOrderId(payCratePayTokenDto.getOrderId());
         paymentTransaction.setPayAmount(payCratePayTokenDto.getPayAmount());

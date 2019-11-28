@@ -1,5 +1,6 @@
 package com.zhibinwang.pay.callback;
 
+import com.zhibinwang.pay.Constants.PayConstant;
 import com.zhibinwang.pay.entity.PaymentTransaction;
 import com.zhibinwang.pay.entity.PaymentTransactionExample;
 import com.zhibinwang.pay.enu.PayStatu;
@@ -44,18 +45,22 @@ public abstract class AbstractPayCallbackTemplate {
         //1 校验参数
 
         Map<String, String> result = verifySignature(req, resp);
-        //判断是支付宝通知还是银联通知 TODO
+        //判断是支付宝通知还是银联通知
         String pay = "【支付宝通知】";
-
-        if (false){
+        String channel = result.get(PayConstant.PAY_CHANNEL);
+        if (PayConstant.PAY_CHANNEL_UNION.equals(channel)){
+            pay = "[银联支付通知]";
+        }
+        String validateResult = result.get(PayConstant.VALIDATE_RESULT);
+        if (PayConstant.VALIDATE_RESULT_FAIL.equals(validateResult)){
             return fail();
         }
         //2.记录日志 //异步
         addAsyncPayLog(result);
         // 3验证订单记录 TODO
-        String payId = "1234";
+        String payId = result.get(PayConstant.PAY_ID);
         //获取订单id
-        PaymentTransaction paymentTransactionInfo = getPaymentTransactionInfo(20l);
+        PaymentTransaction paymentTransactionInfo = getPaymentTransactionInfo(Long.valueOf(payId));
         if (paymentTransactionInfo == null){
             log.info("{}未查询到支付订单信息，订单id:{}",pay,payId);
             return fail();
@@ -65,7 +70,7 @@ public abstract class AbstractPayCallbackTemplate {
             return success();
         }
         //获取jine TODO
-        long money = 20l;
+        long money = Long.valueOf(result.get(PayConstant.PAY_MONEY));
         //4 验证支付金额
         if (money != paymentTransactionInfo.getPayAmount()){
             log.info("{}支付金额不一致，支付订单金额:{},通知金额:{},订单id:{}",pay,payId,money,paymentTransactionInfo.getPayAmount());
