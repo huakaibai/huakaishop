@@ -33,6 +33,8 @@
         <commons-codec.version>1.6</commons-codec.version>
         <swagger.version>2.9.2</swagger.version>
         <xxl-sso.version>1.1.1-SNAPSHOT</xxl-sso.version>
+        <xxl-job.version>2.1.2-SNAPSHOT</xxl-job.version>
+        <xxl-rpc.version>1.5.0</xxl-rpc.version>
         <jedis.version>3.0.0</jedis.version>
         <tengxun-sdk.version>1.0</tengxun-sdk.version>
         <weixin-java-mp.version>3.3.0</weixin-java-mp.version>
@@ -165,6 +167,16 @@
                 <groupId>com.xuxueli</groupId>
                 <artifactId>xxl-sso-core</artifactId>
                 <version>${xxl-sso.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xuxueli</groupId>
+                <artifactId>xxl-job-core</artifactId>
+                <version>${xxl-job.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xuxueli</groupId>
+                <artifactId>xxl-rpc-core</artifactId>
+                <version>${xxl-rpc.version}</version>
             </dependency>
             <dependency>
                 <groupId>redis.clients</groupId>

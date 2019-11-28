@@ -12,6 +12,11 @@
     <artifactId>hukai-shop-service-impl-pay</artifactId>
 
     <dependencies>
+        <!-- xxl-job-core -->
+        <dependency>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-job-core</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.zhibinwang</groupId>
             <artifactId>huakai-shop-service-api-pay</artifactId>
