@@ -2,8 +2,8 @@ package com.zhibinwang.pay.strategy;
 
 import com.alipay.api.AlipayApiException;
 import com.zhibinwang.pay.PayMentTransacInfoDTO;
-import com.zhibinwang.pay.PaymentChannelDTO;
 import com.zhibinwang.pay.entity.PaymentChannel;
+import com.zhibinwang.pay.entity.PaymentTransaction;
 
 /**
  * @author zhibin.wang
@@ -13,4 +13,12 @@ import com.zhibinwang.pay.entity.PaymentChannel;
 public interface PayStrategy {
 
     String toPayHtml(PaymentChannel paymentChannel, PayMentTransacInfoDTO payMentTransacInfoDTO) throws AlipayApiException;
+
+    /**
+     * 根据订单id查询交易是否成功
+     * @param paymentChannel
+     * @param paymentTransaction
+     * @return
+     */
+    boolean payQuery(PaymentChannel paymentChannel, PaymentTransaction paymentTransaction);
 }

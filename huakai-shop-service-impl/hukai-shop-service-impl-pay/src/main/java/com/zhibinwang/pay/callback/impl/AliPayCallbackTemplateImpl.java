@@ -7,6 +7,7 @@ import com.zhibinwang.pay.Constants.PayConstant;
 import com.zhibinwang.pay.callback.AbstractPayCallbackTemplate;
 import com.zhibinwang.pay.entity.PaymentChannel;
 import com.zhibinwang.pay.entity.PaymentChannelExample;
+import com.zhibinwang.pay.entity.PaymentTransaction;
 import com.zhibinwang.pay.mapper.PaymentChannelMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,7 +121,9 @@ public class AliPayCallbackTemplateImpl extends AbstractPayCallbackTemplate {
                 log.info("{}更新数据库状态失败，orderId={}", logPrefix, payId);
                 return fail();
             }
-
+            PaymentTransaction paymentTransaction = getPaymentTransactionByid(Long.valueOf(payId));
+            //异步通知发送数据到mq
+            addIntegral(paymentTransaction);
             log.info("{}更新数据库状态成功，支付完成，orderId={}", logPrefix, payId);
             return success();
         }

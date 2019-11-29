@@ -1,11 +1,13 @@
 package com.zhibinwang.pay.callback;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zhibinwang.pay.Constants.PayConstant;
 import com.zhibinwang.pay.entity.PaymentTransaction;
 import com.zhibinwang.pay.entity.PaymentTransactionExample;
 import com.zhibinwang.pay.enu.PayStatu;
 import com.zhibinwang.pay.mapper.PaymentTransactionLogMapper;
 import com.zhibinwang.pay.mapper.PaymentTransactionMapper;
+import com.zhibinwang.pay.rabbitmq.producer.IntergalProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -29,6 +31,9 @@ public abstract class AbstractPayCallbackTemplate {
 
     @Autowired
     private PaymentTransactionMapper transactionMapper;
+
+    @Autowired
+    private IntergalProducer intergalProducer;
 
     protected abstract  Map<String, String> verifySignature(HttpServletRequest req, HttpServletResponse resp) ;
 
@@ -108,6 +113,24 @@ public abstract class AbstractPayCallbackTemplate {
 
 
     }
+
+
+
+    @Async
+    protected void addIntegral(PaymentTransaction paymentTransaction) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("paymentId", paymentTransaction.getId()+"");
+        jsonObject.put("userId", paymentTransaction.getUserId());
+        jsonObject.put("integral", 100);
+       // jsonObject.put("paymentChannel", paymentTransaction.getPaymentChannel());
+        intergalProducer.send(jsonObject);
+    }
+
+
+    protected  PaymentTransaction getPaymentTransactionByid(long id){
+       return  transactionMapper.selectByPrimaryKey(id);
+    }
+
 
     @Async
     void addAsyncPayLog(Map<String, String> result){

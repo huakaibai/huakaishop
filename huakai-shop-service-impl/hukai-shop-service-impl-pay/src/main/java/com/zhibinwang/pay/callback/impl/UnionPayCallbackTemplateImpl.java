@@ -1,12 +1,11 @@
 package com.zhibinwang.pay.callback.impl;
 
 import com.union.sdk.AcpService;
-import com.union.sdk.LogUtil;
 import com.union.sdk.SDKConstants;
 import com.zhibinwang.pay.Constants.PayConstant;
 import com.zhibinwang.pay.callback.AbstractPayCallbackTemplate;
+import com.zhibinwang.pay.entity.PaymentTransaction;
 import lombok.extern.slf4j.Slf4j;
-import org.codehaus.commons.compiler.samples.DemoBase;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -101,7 +100,10 @@ public class UnionPayCallbackTemplateImpl extends AbstractPayCallbackTemplate {
                 log.info("{}更新数据库状态失败，orderId={}", logPrefix, payId);
                 return fail();
             }
+            PaymentTransaction paymentTransaction = getPaymentTransactionByid(Long.valueOf(payId));
 
+            //发送通知到qctivemq
+            addIntegral(paymentTransaction);
             log.info("{}更新数据库状态成功，支付完成，orderId={}", logPrefix, payId);
             return success();
         }
