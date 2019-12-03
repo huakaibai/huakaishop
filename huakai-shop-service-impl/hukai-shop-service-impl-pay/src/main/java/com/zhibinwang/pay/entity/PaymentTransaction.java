@@ -15,6 +15,8 @@ public class PaymentTransaction {
 
     private String payName;
 
+    private String channelId;
+
     private String partyPayId;
 
     private Integer revision;
@@ -73,6 +75,14 @@ public class PaymentTransaction {
 
     public void setPayName(String payName) {
         this.payName = payName == null ? null : payName.trim();
+    }
+
+    public String getChannelId() {
+        return channelId;
+    }
+
+    public void setChannelId(String channelId) {
+        this.channelId = channelId == null ? null : channelId.trim();
     }
 
     public String getPartyPayId() {

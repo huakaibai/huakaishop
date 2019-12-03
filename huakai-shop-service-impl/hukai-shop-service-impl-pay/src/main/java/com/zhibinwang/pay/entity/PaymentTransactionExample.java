@@ -485,6 +485,76 @@ public class PaymentTransactionExample {
             return (Criteria) this;
         }
 
+        public Criteria andChannelIdIsNull() {
+            addCriterion("CHANNEL_ID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelIdIsNotNull() {
+            addCriterion("CHANNEL_ID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelIdEqualTo(String value) {
+            addCriterion("CHANNEL_ID =", value, "channelId");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelIdNotEqualTo(String value) {
+            addCriterion("CHANNEL_ID <>", value, "channelId");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelIdGreaterThan(String value) {
+            addCriterion("CHANNEL_ID >", value, "channelId");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelIdGreaterThanOrEqualTo(String value) {
+            addCriterion("CHANNEL_ID >=", value, "channelId");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelIdLessThan(String value) {
+            addCriterion("CHANNEL_ID <", value, "channelId");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelIdLessThanOrEqualTo(String value) {
+            addCriterion("CHANNEL_ID <=", value, "channelId");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelIdLike(String value) {
+            addCriterion("CHANNEL_ID like", value, "channelId");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelIdNotLike(String value) {
+            addCriterion("CHANNEL_ID not like", value, "channelId");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelIdIn(List<String> values) {
+            addCriterion("CHANNEL_ID in", values, "channelId");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelIdNotIn(List<String> values) {
+            addCriterion("CHANNEL_ID not in", values, "channelId");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelIdBetween(String value1, String value2) {
+            addCriterion("CHANNEL_ID between", value1, value2, "channelId");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelIdNotBetween(String value1, String value2) {
+            addCriterion("CHANNEL_ID not between", value1, value2, "channelId");
+            return (Criteria) this;
+        }
+
         public Criteria andPartyPayIdIsNull() {
             addCriterion("PARTY_PAY_ID is null");
             return (Criteria) this;

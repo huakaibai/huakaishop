@@ -105,6 +105,7 @@ public class PayTransactionServiceImpl extends BaseApiService<JSONObject> implem
         PaymentChannel paymentChannel = paymentChannels.get(0);
         String className = paymentChannel.getClassName();
         PayStrategy payStrategy = PayStrategyFactory.getPayStrategy(className);
+
         if (payStrategy == null){
             return setResultError("获取支付策略类失败！");
         }
@@ -119,6 +120,7 @@ public class PayTransactionServiceImpl extends BaseApiService<JSONObject> implem
         jsonObject.put("payHtml",html);
         if (html != null){
             //更新状态为支付中 TODO
+            // 更新业务支付渠道为channel_id
         }
         return setResultSuccess(jsonObject);
     }

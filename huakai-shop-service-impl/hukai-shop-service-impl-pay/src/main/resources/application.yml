@@ -23,7 +23,7 @@ spring:
     ####密码
     password: guest
     ### 地址
-    virtual-host: /admin_host
+    virtual-host: /bus
     listener:
       simple:
         retry:

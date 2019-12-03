@@ -16,6 +16,7 @@
         <module>huakai-shop-service-api-member</module>
         <module>huakai-shop-service-api-goods</module>
         <module>huakai-shop-service-api-pay</module>
+        <module>huakai-shop-service-api-intergal</module>
     </modules>
 
     <dependencies>

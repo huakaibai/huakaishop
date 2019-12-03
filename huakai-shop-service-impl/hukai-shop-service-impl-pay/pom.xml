@@ -12,7 +12,7 @@
     <artifactId>hukai-shop-service-impl-pay</artifactId>
 
     <dependencies>
-        <!-- xxl-job-core -->
+        <!-- xxl-job-core f
         <dependency>
             <groupId>com.xuxueli</groupId>
             <artifactId>xxl-job-core</artifactId>

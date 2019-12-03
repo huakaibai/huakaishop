@@ -11,6 +11,7 @@ import com.zhibinwang.pay.rabbitmq.producer.IntergalProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,7 +43,7 @@ public abstract class AbstractPayCallbackTemplate {
     protected abstract String success();
 
     protected abstract String asyService(Map<String, String> result);
-
+    @Transactional
     public String asyncCallBack(HttpServletRequest req, HttpServletResponse resp){
 
         //1.解析参数
@@ -122,7 +123,7 @@ public abstract class AbstractPayCallbackTemplate {
         jsonObject.put("paymentId", paymentTransaction.getId()+"");
         jsonObject.put("userId", paymentTransaction.getUserId());
         jsonObject.put("integral", 100);
-       // jsonObject.put("paymentChannel", paymentTransaction.getPaymentChannel());
+        jsonObject.put("paymentChannel", paymentTransaction.getChannelId());
         intergalProducer.send(jsonObject);
     }
 

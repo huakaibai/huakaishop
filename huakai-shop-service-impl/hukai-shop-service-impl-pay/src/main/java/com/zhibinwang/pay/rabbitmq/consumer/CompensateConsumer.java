@@ -2,10 +2,15 @@ package com.zhibinwang.pay.rabbitmq.consumer;
 
 import com.alibaba.fastjson.JSONObject;
 import com.rabbitmq.client.Channel;
+import com.zhibinwang.pay.entity.PaymentChannel;
+import com.zhibinwang.pay.entity.PaymentChannelExample;
 import com.zhibinwang.pay.entity.PaymentTransaction;
 import com.zhibinwang.pay.enu.PayStatu;
+import com.zhibinwang.pay.mapper.PaymentChannelMapper;
 import com.zhibinwang.pay.mapper.PaymentTransactionMapper;
 import com.zhibinwang.pay.rabbitmq.config.RabbitmqConfig;
+import com.zhibinwang.pay.strategy.PayStrategy;
+import com.zhibinwang.pay.strategy.PayStrategyFactory;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,6 +32,9 @@ public class CompensateConsumer {
 
     @Autowired
     private PaymentTransactionMapper paymentTransactionMapper;
+
+    @Autowired
+    private PaymentChannelMapper channelMapper;
 
     /**
      * 消息补偿服务
@@ -50,15 +59,30 @@ public class CompensateConsumer {
             return ;
         }
 
-        // 调用第三方对账查询订单 TODO
-
-
-        paymentTransaction.setPaymentStatus(PayStatu.PAY_SUC.getValue());
-        paymentTransaction.setUpdatedTime(new Date());
-        int i = paymentTransactionMapper.updateByPrimaryKeySelective(paymentTransaction);
-        if (i > 0){
+        // 调用第三方对账查询订单
+        String channelId = paymentTransaction.getChannelId();
+        PaymentChannelExample example = new PaymentChannelExample();
+        PaymentChannelExample.Criteria criteria = example.createCriteria();
+        criteria.andChannelIdEqualTo(channelId);
+        List<PaymentChannel> paymentChannels =  channelMapper.selectByExample(example);
+        if (paymentChannels ==  null || paymentChannels.size() < 1){
             basicNack(message,channel);
+            return ;
         }
+        PaymentChannel paymentChannel = paymentChannels.get(0);
+        PayStrategy payStrategy = PayStrategyFactory.getPayStrategy(paymentChannel.getClassName());
+        boolean queryResult = payStrategy.payQuery(paymentChannel, paymentTransaction);
+        // 支付成功
+        if (queryResult){
+            paymentTransaction.setPaymentStatus(PayStatu.PAY_SUC.getValue());
+            paymentTransaction.setUpdatedTime(new Date());
+            int i = paymentTransactionMapper.updateByPrimaryKeySelective(paymentTransaction);
+            if (i > 0){
+                basicNack(message,channel);
+            }
+            return ;
+        }
+
 
 
     }

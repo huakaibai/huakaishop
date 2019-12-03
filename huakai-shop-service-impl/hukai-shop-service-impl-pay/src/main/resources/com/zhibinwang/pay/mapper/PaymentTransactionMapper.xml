@@ -8,6 +8,7 @@
     <result column="USER_ID" property="userId" jdbcType="INTEGER" />
     <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
     <result column="PAY_NAME" property="payName" jdbcType="VARCHAR" />
+    <result column="CHANNEL_ID" property="channelId" jdbcType="VARCHAR" />
     <result column="PARTY_PAY_ID" property="partyPayId" jdbcType="VARCHAR" />
     <result column="REVISION" property="revision" jdbcType="INTEGER" />
     <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
@@ -74,8 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ID, PAY_AMOUNT, PAYMENT_STATUS, USER_ID, ORDER_ID, PAY_NAME, PARTY_PAY_ID, REVISION, 
-    CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME
+    ID, PAY_AMOUNT, PAYMENT_STATUS, USER_ID, ORDER_ID, PAY_NAME, CHANNEL_ID, PARTY_PAY_ID, 
+    REVISION, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhibinwang.pay.entity.PaymentTransactionExample" >
     select
@@ -110,14 +111,14 @@
   <insert id="insert" parameterType="com.zhibinwang.pay.entity.PaymentTransaction" >
     insert into payment_transaction (ID, PAY_AMOUNT, PAYMENT_STATUS, 
       USER_ID, ORDER_ID, PAY_NAME, 
-      PARTY_PAY_ID, REVISION, CREATED_BY, 
-      CREATED_TIME, UPDATED_BY, UPDATED_TIME
-      )
+      CHANNEL_ID, PARTY_PAY_ID, REVISION, 
+      CREATED_BY, CREATED_TIME, UPDATED_BY, 
+      UPDATED_TIME)
     values (#{id,jdbcType=BIGINT}, #{payAmount,jdbcType=BIGINT}, #{paymentStatus,jdbcType=INTEGER}, 
       #{userId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{payName,jdbcType=VARCHAR}, 
-      #{partyPayId,jdbcType=VARCHAR}, #{revision,jdbcType=INTEGER}, #{createdBy,jdbcType=VARCHAR}, 
-      #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}
-      )
+      #{channelId,jdbcType=VARCHAR}, #{partyPayId,jdbcType=VARCHAR}, #{revision,jdbcType=INTEGER}, 
+      #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{updatedTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.zhibinwang.pay.entity.PaymentTransaction" >
     insert into payment_transaction
@@ -139,6 +140,9 @@
       </if>
       <if test="payName != null" >
         PAY_NAME,
+      </if>
+      <if test="channelId != null" >
+        CHANNEL_ID,
       </if>
       <if test="partyPayId != null" >
         PARTY_PAY_ID,
@@ -177,6 +181,9 @@
       </if>
       <if test="payName != null" >
         #{payName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null" >
+        #{channelId,jdbcType=VARCHAR},
       </if>
       <if test="partyPayId != null" >
         #{partyPayId,jdbcType=VARCHAR},
@@ -225,6 +232,9 @@
       <if test="record.payName != null" >
         PAY_NAME = #{record.payName,jdbcType=VARCHAR},
       </if>
+      <if test="record.channelId != null" >
+        CHANNEL_ID = #{record.channelId,jdbcType=VARCHAR},
+      </if>
       <if test="record.partyPayId != null" >
         PARTY_PAY_ID = #{record.partyPayId,jdbcType=VARCHAR},
       </if>
@@ -256,6 +266,7 @@
       USER_ID = #{record.userId,jdbcType=INTEGER},
       ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
       PAY_NAME = #{record.payName,jdbcType=VARCHAR},
+      CHANNEL_ID = #{record.channelId,jdbcType=VARCHAR},
       PARTY_PAY_ID = #{record.partyPayId,jdbcType=VARCHAR},
       REVISION = #{record.revision,jdbcType=INTEGER},
       CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
@@ -283,6 +294,9 @@
       </if>
       <if test="payName != null" >
         PAY_NAME = #{payName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null" >
+        CHANNEL_ID = #{channelId,jdbcType=VARCHAR},
       </if>
       <if test="partyPayId != null" >
         PARTY_PAY_ID = #{partyPayId,jdbcType=VARCHAR},
@@ -312,6 +326,7 @@
       USER_ID = #{userId,jdbcType=INTEGER},
       ORDER_ID = #{orderId,jdbcType=VARCHAR},
       PAY_NAME = #{payName,jdbcType=VARCHAR},
+      CHANNEL_ID = #{channelId,jdbcType=VARCHAR},
       PARTY_PAY_ID = #{partyPayId,jdbcType=VARCHAR},
       REVISION = #{revision,jdbcType=INTEGER},
       CREATED_BY = #{createdBy,jdbcType=VARCHAR},

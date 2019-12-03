@@ -16,6 +16,7 @@
         <module>huakai-shop-service-impl-member</module>
         <module>huakai-shop-service-impl-goods</module>
         <module>hukai-shop-service-impl-pay</module>
+        <module>huakai-shop-service-impl-intergal</module>
     </modules>
     <dependencies>
         <!-- springcloud feign组件 -->
