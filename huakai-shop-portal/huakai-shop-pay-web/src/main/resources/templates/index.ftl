@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>蚂蚁课堂收银台</title>
+<title>花开课堂收银台</title>
 <link rel="stylesheet"
 	href="http://pay.mayikt.com/static/static_layui/css/layui.css" />
 <script type="text/javascript"
@@ -148,7 +148,7 @@ body {
 					<strong>订单详情：</strong>
 					<hr />
 					<div class="scent-order-info-desc">
-						<span>商品名称：蚂蚁课堂-会员充值</span>
+						<span>商品名称：花开课堂-会员充值</span>
 					</div>
 					<div class="scent-order-info-desc">
 						<span>支付订单：${data.id}</span>
@@ -218,9 +218,9 @@ body {
 		$("#weixin").hide();
 		$("#wx").css("margin-top", "-32px")
 		$(".footer").css("font-size", "14px")
-		console.log("蚂蚁课堂PC手机版本充值...")
+		console.log("花开课堂PC手机版本充值...")
 	} else {
-		console.log("蚂蚁课堂PC电脑版本充值...")
+		console.log("花开课堂PC电脑版本充值...")
 	}
 
 	/* 	function orderStatus(){

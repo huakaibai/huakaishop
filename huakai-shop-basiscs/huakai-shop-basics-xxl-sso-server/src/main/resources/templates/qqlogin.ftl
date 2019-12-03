@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>蚂蚁商城-QQ关联</title>
+<title>花开商城-QQ关联</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="stylesheet" href="../res/layui/css/layui.css">
@@ -60,7 +60,7 @@
 				</p>
 
 				<span style="margin-left: 15px; color: #ff662f;"> 您正在使用
-					QQ绑定蚂蚁课堂【已注册】账户</span>
+					QQ绑定花开课堂【已注册】账户</span>
 
 
 
@@ -86,7 +86,7 @@
 					lay-filter="user-login">绑定</button>
 
 				<span style="margin-left: 25%; padding-top: 30px;"> <a
-					href="register" style="color: #009100;"> 【未注册】蚂蚁课堂账户？</a></span>
+					href="register" style="color: #009100;"> 【未注册】花开课堂账户？</a></span>
 			</div>
 	</div>
 	</form>
