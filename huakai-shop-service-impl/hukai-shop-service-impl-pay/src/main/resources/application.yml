@@ -36,6 +36,19 @@ spring:
         ####开启手动ack
         acknowledge-mode: manual
         default-requeue-rejected: false
+security:
+  oauth2:
+    resource:
+      ####从认证授权中心上验证token
+      tokenInfoUri: http://localhost:8080/oauth/check_token
+      preferTokenInfo: true
+    client:
+      accessTokenUri: http://localhost:8080/oauth/token
+      userAuthorizationUri: http://localhost:8080/oauth/authorize
+      ###appid
+      clientId: client_1
+      ###appSecret
+      clientSecret: 123456
 
 xxl:
   job:

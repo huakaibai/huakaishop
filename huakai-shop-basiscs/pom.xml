@@ -16,6 +16,7 @@
         <module>huakai-shop-basics-xxl-sso-server</module>
         <module>huakai-shop-basics-elk-kafka</module>
         <module>huakai-shop-basics-xxl-job-admin</module>
+        <module>huakai-shop-basics-oauth</module>
 
     </modules>
 
