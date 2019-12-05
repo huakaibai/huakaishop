@@ -1,7 +1,5 @@
 package com.zhibinwang.pay.serveice;
 
-import com.zhibinwang.base.BaseApiService;
-import com.zhibinwang.base.BaseResponse;
 import com.zhibinwang.core.mapper.MapperUtils;
 import com.zhibinwang.pay.PaymentChannelDTO;
 import com.zhibinwang.pay.entity.PaymentChannel;
@@ -18,7 +16,7 @@ import java.util.List;
  * @desc 支付渠道实现类
  **/
 @RestController
-public class PaymentChannelService  implements IPaymentChannelService {
+public class PaymentChannelServiceImpl implements IPaymentChannelService {
 
 
     @Autowired
@@ -32,7 +30,4 @@ public class PaymentChannelService  implements IPaymentChannelService {
     }
 
 
-    public static void main(String[] args) {
-        IPaymentChannelService la = new PaymentChannelService();
-    }
 }

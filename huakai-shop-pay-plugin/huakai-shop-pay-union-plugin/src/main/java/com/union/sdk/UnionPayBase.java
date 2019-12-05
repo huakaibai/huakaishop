@@ -71,7 +71,7 @@ public class UnionPayBase {
 	 * @return 包含每一笔交易中 序列号 和 值 的map序列
 	 */
 	public static List<Map> parseZMFile(String filePath){
-		int lengthArray[] = {3,11,11,6,10,19,12,4,2,21,2,32,2,6,10,13,13,4,15,2,2,6,2,4,32,1,21,15,1,15,32,13,13,8,32,13,13,12,2,1,32,98};
+		int[] lengthArray = {3, 11, 11, 6, 10, 19, 12, 4, 2, 21, 2, 32, 2, 6, 10, 13, 13, 4, 15, 2, 2, 6, 2, 4, 32, 1, 21, 15, 1, 15, 32, 13, 13, 8, 32, 13, 13, 12, 2, 1, 32, 98};
 		return parseFile(filePath,lengthArray);
 	}
 	
@@ -82,7 +82,7 @@ public class UnionPayBase {
 	 * @return 包含每一笔交易中 序列号 和 值 的map序列
 	 */
 	public static List<Map> parseZMEFile(String filePath){
-		int lengthArray[] = {3,11,11,6,10,19,12,4,2,2,6,10,4,12,13,13,15,15,1,12,2,135};
+		int[] lengthArray = {3, 11, 11, 6, 10, 19, 12, 4, 2, 2, 6, 10, 4, 12, 13, 13, 15, 15, 1, 12, 2, 135};
 		return parseFile(filePath,lengthArray);
 	}
 	
@@ -92,7 +92,7 @@ public class UnionPayBase {
 	 * @param lengthArray 参照《全渠道平台接入接口规范 第3部分 文件接口》 全渠道商户对账文件 6.1 ZM文件和6.2 ZME 文件 格式的类型长度组成int型数组
 	 * @return
 	 */
-	private static List<Map> parseFile(String filePath,int lengthArray[]){
+	private static List<Map> parseFile(String filePath, int[] lengthArray){
 	 	List<Map> ZmDataList = new ArrayList<Map>();
 	 	try {
             String encoding="gbk"; //文件是gbk编码

@@ -49,6 +49,7 @@
         <huakai-shop-service-api-pay.version>1.0-SNAPSHOT</huakai-shop-service-api-pay.version>
         <huakai-shop-service-api-member.version>1.0-SNAPSHOT</huakai-shop-service-api-member.version>
         <huakai-shop-service-api-weixin.version>1.0-SNAPSHOT</huakai-shop-service-api-weixin.version>
+        <huakai-shop-service-api-spike.version>1.0-SNAPSHOT</huakai-shop-service-api-spike.version>
     </properties>
 
     <dependencies>
@@ -253,7 +254,11 @@
                 <version>${huakai-shop-service-api-weixin.version}</version>
             </dependency>
 
-
+            <dependency>
+                <groupId>com.zhibinwang</groupId>
+                <artifactId>huakai-shop-service-api-spike</artifactId>
+                <version>${huakai-shop-service-api-spike.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <!-- 注意： 这里必须要添加， 否者各种依赖有问题 -->

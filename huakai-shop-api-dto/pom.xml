@@ -16,6 +16,7 @@
         <module>huakai-shop-api-weixin-dto</module>
         <module>huakai-shop-api-goods-dto</module>
         <module>huakai-shop-api-pay-dto</module>
+        <module>huakai-shop-api-spike-dto</module>
     </modules>
 
     <dependencies>

@@ -358,10 +358,11 @@ public class AcpService {
 		if(customerInfoMap.isEmpty())
 			return "{}";
 		StringBuffer sf = new StringBuffer("{");
-		for(Iterator<String> it = customerInfoMap.keySet().iterator(); it.hasNext();){
-			String key = it.next();
-			String value = customerInfoMap.get(key);
-			if(key.equals("pin")){
+		for(Iterator<Entry<String, String>> it = customerInfoMap.entrySet().iterator(); it.hasNext();){
+			Entry<String, String> entry = it.next();
+			String key  = entry.getKey();
+			String value = entry.getValue();
+			if("pin".equals(key)){
 				if(null == accNo || "".equals(accNo.trim())){
 					LogUtil.writeLog("送了密码（PIN），必须在getCustomerInfo参数中上传卡号");
 					throw new RuntimeException("加密PIN没送卡号无法后续处理");
@@ -412,10 +413,10 @@ public class AcpService {
 		for(Iterator<String> it = customerInfoMap.keySet().iterator(); it.hasNext();){
 			String key = it.next();
 			String value = customerInfoMap.get(key);
-			if(key.equals("phoneNo") || key.equals("cvn2") || key.equals("expired")){
+			if("phoneNo".equals(key) || "cvn2".equals(key) || "expired".equals(key)){
 				encryptedInfoSb.append(key).append(SDKConstants.EQUAL).append(value).append(SDKConstants.AMPERSAND);
 			}else{
-				if(key.equals("pin")){
+				if("pin".equals(key)){
 					if(null == accNo || "".equals(accNo.trim())){
 						LogUtil.writeLog("送了密码（PIN），必须在getCustomerInfoWithEncrypt参数中上传卡号");
 						throw new RuntimeException("加密PIN没送卡号无法后续处理");
@@ -427,7 +428,7 @@ public class AcpService {
 			}
 		}
 		
-		if(!encryptedInfoSb.toString().equals("")){
+		if(!"".equals(encryptedInfoSb.toString())){
 			encryptedInfoSb.setLength(encryptedInfoSb.length()-1);//去掉最后一个&符号
 			LogUtil.writeLog("组装的customerInfo encryptedInfo明文："+ encryptedInfoSb.toString());
 			sf.append("encryptedInfo").append(SDKConstants.EQUAL).append(encryptData(encryptedInfoSb.toString(), encoding));

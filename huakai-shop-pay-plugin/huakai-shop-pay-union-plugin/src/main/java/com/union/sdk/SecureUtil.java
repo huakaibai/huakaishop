@@ -28,6 +28,7 @@ import java.security.Signature;
 
 /**
  * 
+ * @author zhibin.wang
  * @ClassName SecureUtil
  * @Description acpsdk安全算法工具类
  * @date 2016-7-22 下午4:08:32

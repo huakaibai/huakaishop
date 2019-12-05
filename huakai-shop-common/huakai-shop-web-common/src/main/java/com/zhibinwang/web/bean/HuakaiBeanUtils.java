@@ -2,6 +2,9 @@ package com.zhibinwang.web.bean;
 
 import org.springframework.beans.BeanUtils;
 
+/**
+ * @author zhibin.wang
+ */
 public class HuakaiBeanUtils<Vo, Dto> {
 
 	/**

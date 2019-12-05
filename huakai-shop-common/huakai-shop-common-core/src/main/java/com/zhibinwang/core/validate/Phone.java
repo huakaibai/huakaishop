@@ -37,8 +37,10 @@ public @interface Phone {
 
         @Override
         public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-            if (StringUtils.isEmpty(s))
+            if (StringUtils.isEmpty(s)){
                 return  false;
+            }
+
          	return Pattern.matches(regex, s);
 
         }

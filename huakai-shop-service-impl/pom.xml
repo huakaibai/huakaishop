@@ -17,6 +17,7 @@
         <module>huakai-shop-service-impl-goods</module>
         <module>hukai-shop-service-impl-pay</module>
         <module>huakai-shop-service-impl-intergal</module>
+        <module>huakai-shop-servoce-impl-spike</module>
     </modules>
     <dependencies>
         <!-- springcloud feign组件 -->

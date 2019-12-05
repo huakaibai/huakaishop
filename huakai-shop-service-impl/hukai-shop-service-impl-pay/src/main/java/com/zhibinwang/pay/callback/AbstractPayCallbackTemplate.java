@@ -1,7 +1,7 @@
 package com.zhibinwang.pay.callback;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zhibinwang.pay.Constants.PayConstant;
+import com.zhibinwang.pay.constant.PayConstant;
 import com.zhibinwang.pay.entity.PaymentTransaction;
 import com.zhibinwang.pay.entity.PaymentTransactionExample;
 import com.zhibinwang.pay.enu.PayStatu;
@@ -21,7 +21,7 @@ import java.util.Map;
 
 /**
  * @author zhibin.wang
- * @create 2019-11-27 10:15
+ * @create 2019-11-27
  * @desc 模板模式支付异步回调接口
  **/
 @Slf4j
@@ -36,14 +36,33 @@ public abstract class AbstractPayCallbackTemplate {
     @Autowired
     private IntergalProducer intergalProducer;
 
+    /**
+     * 校验参数和签名
+     * @param req
+     * @param resp
+     * @return
+     */
     protected abstract  Map<String, String> verifySignature(HttpServletRequest req, HttpServletResponse resp) ;
 
+    /**
+     * 不同支付接口返回不同的失败信息
+     * @return
+     */
     protected abstract String fail();
 
+    /**
+     * 不同支付接口返回不同的成功信息
+     * @return
+     */
     protected abstract String success();
 
+    /**
+     * 不同的支付接口，根据不同的支付状态进行不同的更新操作
+     * @param result
+     * @return
+     */
     protected abstract String asyService(Map<String, String> result);
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public String asyncCallBack(HttpServletRequest req, HttpServletResponse resp){
 
         //1.解析参数
@@ -76,7 +95,7 @@ public abstract class AbstractPayCallbackTemplate {
             return success();
         }
         //获取jine TODO
-        long money = Long.valueOf(result.get(PayConstant.PAY_MONEY));
+        long money = Long.parseLong(result.get(PayConstant.PAY_MONEY));
         //4 验证支付金额
         if (money != paymentTransactionInfo.getPayAmount()){
             log.info("{}支付金额不一致，支付订单金额:{},通知金额:{},订单id:{}",pay,payId,money,paymentTransactionInfo.getPayAmount());

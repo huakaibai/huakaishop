@@ -10,7 +10,7 @@ import com.alipay.api.request.AlipayTradeQueryRequest;
 import com.alipay.api.response.AlipayTradePagePayResponse;
 import com.alipay.api.response.AlipayTradeQueryResponse;
 import com.alipay.sdk.AliPayConfig;
-import com.zhibinwang.pay.Constants.PayConstant;
+import com.zhibinwang.pay.constant.PayConstant;
 import com.zhibinwang.pay.PayMentTransacInfoDTO;
 import com.zhibinwang.pay.entity.PaymentChannel;
 import com.zhibinwang.pay.entity.PaymentTransaction;
@@ -147,6 +147,6 @@ public class AliPayStrategyImpl implements PayStrategy {
         if (!amount.matches(CURRENCY_FEN_REGEX)) {
             return null;
         }
-        return BigDecimal.valueOf(Long.valueOf(amount)).divide(new BigDecimal(100)).toString();
+        return BigDecimal.valueOf(Long.parseLong(amount)).divide(new BigDecimal(100)).toString();
     }
 }

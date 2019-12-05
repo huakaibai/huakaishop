@@ -6,14 +6,17 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-
-@Data
-@Valid
 /**
  * 2. @NotEmpty 用在集合类上面
  * 　　　　@NotBlank 用在String上面
  * 　　　　@NotNull 用在基本类型上
  */
+/**
+ * @author zhibin.wang
+ */
+@Data
+@Valid
+
 public class LoginVo {
 	/**
 	 * 手机号码

@@ -3,6 +3,9 @@ package com.zhibinwang.member.entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * @author zhibin.wang
+ */
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class UserTokenDo extends BaseDo {

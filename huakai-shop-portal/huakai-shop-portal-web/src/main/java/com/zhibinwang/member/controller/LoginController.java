@@ -23,6 +23,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author zhibin.wang
+ */
 @Controller
 public class LoginController extends BaseWebController {
 	private static final String MEMBER_LOGIN_PAGE = "member/login";

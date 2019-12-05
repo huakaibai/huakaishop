@@ -69,7 +69,7 @@ public class UnionPayStrategyImpl implements PayStrategy {
         // 超过此时间后，除网银交易外，其他交易银联系统会拒绝受理，提示超时。 跳转银行网银交易如果超时后交易成功，会自动退款，大约5个工作日金额返还到持卡人账户。
         // 此时间建议取支付时的北京时间加15分钟。
         // 超过超时时间调查询接口应答origRespCode不是A6或者00的就可以判断为失败。
-        requestData.put("payTimeout", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date().getTime()+ 15 * 60 * 1000));
+        requestData.put("payTimeout", new SimpleDateFormat("yyyyMMddHHmmss").format(System.currentTimeMillis()+ 15 * 60 * 1000));
         log.info("requestData={}",requestData);
         //////////////////////////////////////////////////
         //

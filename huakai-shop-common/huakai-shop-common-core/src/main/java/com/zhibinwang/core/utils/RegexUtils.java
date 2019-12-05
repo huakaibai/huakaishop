@@ -11,6 +11,9 @@ import java.util.regex.Pattern;
  */
 public class RegexUtils {
 
+	static Pattern p = Pattern.compile("(?<=http://|\\.)[^.]*?\\.(com|cn|net|org|biz|info|cc|tv)",
+			Pattern.CASE_INSENSITIVE);
+
 	/**
 	 * 验证Email
 	 * 
@@ -150,7 +153,7 @@ public class RegexUtils {
 	 *            http://www.csdn.net:80
 	 * @return 验证成功返回true，验证失败返回false
 	 */
-	public static boolean checkURL(String url) {
+	public static boolean checkUrl(String url) {
 		String regex = "(https?://(w{3}\\.)?)?\\w+\\.\\w+(\\.[a-zA-Z]+)*(:\\d{1,5})?(/\\w*)*(\\??(.+=.*)?(&.+=.*)?)?";
 		return Pattern.matches(regex, url);
 	}
@@ -164,8 +167,7 @@ public class RegexUtils {
 	 * @return
 	 */
 	public static String getDomain(String url) {
-		Pattern p = Pattern.compile("(?<=http://|\\.)[^.]*?\\.(com|cn|net|org|biz|info|cc|tv)",
-				Pattern.CASE_INSENSITIVE);
+
 		// 获取完整的域名
 		// Pattern
 		// p=Pattern.compile("[^//]*?\\.(com|cn|net|org|biz|info|cc|tv)",

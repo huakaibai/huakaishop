@@ -36,13 +36,6 @@ public class AopLogAspect {
 				.getRequestAttributes();
 		HttpServletRequest request = requestAttributes.getRequest();
 
-		// // 打印请求内容
-		// log.info("===============请求内容===============");
-		// log.info("请求地址:" + request.getRequestURL().toString());
-		// log.info("请求方式:" + request.getMethod());
-		// log.info("请求类方法:" + joinPoint.getSignature());
-		// log.info("请求类方法参数:" + Arrays.toString(joinPoint.getArgs()));
-		// log.info("===============请求内容===============");
 
 		JSONObject jsonObject = new JSONObject();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 设置日期格式
@@ -60,12 +53,11 @@ public class AopLogAspect {
 	// 在方法执行完结后打印返回内容
 	@AfterReturning(returning = "o", pointcut = "serviceAspect()")
 	public void methodAfterReturing(Object o) {
-		// log.info("--------------返回内容----------------");
-		// log.info("Response内容:" + gson.toJson(o));
-		// log.info("--------------返回内容----------------");
+
 		JSONObject respJSONObject = new JSONObject();
 		JSONObject jsonObject = new JSONObject();
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 设置日期格式
+		// 设置日期格式
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		jsonObject.put("response_time", df.format(new Date()));
 		jsonObject.put("response_content", JSONObject.toJSONString(o));
 		respJSONObject.put("response", jsonObject);

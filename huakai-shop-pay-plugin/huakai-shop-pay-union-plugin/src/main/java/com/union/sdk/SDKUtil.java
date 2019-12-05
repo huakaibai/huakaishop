@@ -713,7 +713,6 @@ public class SDKUtil {
 					fcout.close();
 			} catch (IOException ex) {
 				LogUtil.writeErrorLog("Releases any system resources fail", ex);
-				return false;
 			}
 		}
 		return true;
@@ -760,7 +759,6 @@ public class SDKUtil {
 				}
 			} catch (Exception e) {
 				LogUtil.writeErrorLog(e.getMessage());
-				return null;
 			}
 		}
 	}

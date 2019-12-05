@@ -32,7 +32,7 @@ public class RedisUtil {
 			}
 
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 
 	}
@@ -95,5 +95,13 @@ public class RedisUtil {
 	public Boolean delKey(String key) {
 		return stringRedisTemplate.delete(key);
 
+	}
+
+	public Boolean setIfAbsent(String key, String value, Long timeOut){
+		Boolean aBoolean = stringRedisTemplate.opsForValue().setIfAbsent(key, value);
+		if (aBoolean){
+			stringRedisTemplate.expire(key,timeOut,TimeUnit.SECONDS);
+		}
+		return aBoolean;
 	}
 }

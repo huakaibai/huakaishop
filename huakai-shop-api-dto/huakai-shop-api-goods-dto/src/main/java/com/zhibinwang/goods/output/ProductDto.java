@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.Date;
 
+/**
+ * @author zhibin.wang
+ */
 @Data
 @ApiModel(value = "搜索商品信息")
 public class ProductDto {
@@ -51,11 +54,11 @@ public class ProductDto {
 	private String createdBy;
 	/** 创建时间 */
 	@ApiModelProperty(value = "创建时间")
-	private Date createdTime;
+	private final Date createdTime;
 	/** 更新人 */
 	@ApiModelProperty(value = "更新人")
 	private String updatedBy;
 	/** 更新时间 */
 	@ApiModelProperty(value = "更新时间")
-	private Date updatedTime;
+	private  final Date updatedTime;
 }

@@ -3,7 +3,7 @@ package com.zhibinwang.pay.callback.impl;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.sdk.AliPayConfig;
-import com.zhibinwang.pay.Constants.PayConstant;
+import com.zhibinwang.pay.constant.PayConstant;
 import com.zhibinwang.pay.callback.AbstractPayCallbackTemplate;
 import com.zhibinwang.pay.entity.PaymentChannel;
 import com.zhibinwang.pay.entity.PaymentChannelExample;
@@ -39,7 +39,7 @@ public class AliPayCallbackTemplateImpl extends AbstractPayCallbackTemplate {
 
     @Override
     protected Map<String, String> verifySignature(HttpServletRequest request, HttpServletResponse resp) {
-        Map<String,String> params = new HashMap();
+        Map<String,String> params = new HashMap(16);
         Map<String,String[]> requestParams = request.getParameterMap();
         for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext();) {
             String name =  iter.next();
@@ -102,14 +102,7 @@ public class AliPayCallbackTemplateImpl extends AbstractPayCallbackTemplate {
     @Override
     protected String asyService(Map<String, String> result) {
 
-/*        //商户订单号
-        String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
 
-        //支付宝交易号
-        String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"UTF-8");
-
-        //交易状态
-        String trade_status = new String(request.getParameter("trade_status").getBytes("ISO-8859-1"),"UTF-8");*/
 
         String payId = result.get("orderId");
         String respCode = result.get("trade_status");
@@ -121,7 +114,7 @@ public class AliPayCallbackTemplateImpl extends AbstractPayCallbackTemplate {
                 log.info("{}更新数据库状态失败，orderId={}", logPrefix, payId);
                 return fail();
             }
-            PaymentTransaction paymentTransaction = getPaymentTransactionByid(Long.valueOf(payId));
+            PaymentTransaction paymentTransaction = getPaymentTransactionByid(Long.parseLong(payId));
             //异步通知发送数据到mq
             addIntegral(paymentTransaction);
             log.info("{}更新数据库状态成功，支付完成，orderId={}", logPrefix, payId);

@@ -6,5 +6,16 @@ package com.zhibinwang.core.token;
  * @desc 登陆类型枚举
  **/
 public enum LoginType {
-    IOS,Android,PC
+    /**
+     * ios
+     */
+    IOS,
+    /**
+     * Android
+     */
+    Android,
+    /**
+     * pc
+     */
+    PC
 }

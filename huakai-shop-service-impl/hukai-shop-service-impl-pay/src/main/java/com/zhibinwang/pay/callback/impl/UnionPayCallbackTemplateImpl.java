@@ -2,7 +2,7 @@ package com.zhibinwang.pay.callback.impl;
 
 import com.union.sdk.AcpService;
 import com.union.sdk.SDKConstants;
-import com.zhibinwang.pay.Constants.PayConstant;
+import com.zhibinwang.pay.constant.PayConstant;
 import com.zhibinwang.pay.callback.AbstractPayCallbackTemplate;
 import com.zhibinwang.pay.entity.PaymentTransaction;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +41,6 @@ public class UnionPayCallbackTemplateImpl extends AbstractPayCallbackTemplate {
         log.info("{}通知请求参数:reqParam={}", logPrefix, respParam);
 
         Map<String, String> valideData = null;
-        StringBuffer page = new StringBuffer();
         if (null != respParam && !respParam.isEmpty()) {
             Iterator<Map.Entry<String, String>> it = respParam.entrySet()
                     .iterator();
@@ -100,7 +99,7 @@ public class UnionPayCallbackTemplateImpl extends AbstractPayCallbackTemplate {
                 log.info("{}更新数据库状态失败，orderId={}", logPrefix, payId);
                 return fail();
             }
-            PaymentTransaction paymentTransaction = getPaymentTransactionByid(Long.valueOf(payId));
+            PaymentTransaction paymentTransaction = getPaymentTransactionByid(Long.parseLong(payId));
 
             //发送通知到qctivemq
             addIntegral(paymentTransaction);

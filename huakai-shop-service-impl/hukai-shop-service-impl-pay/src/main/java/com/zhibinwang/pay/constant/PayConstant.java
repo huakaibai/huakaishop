@@ -1,4 +1,4 @@
-package com.zhibinwang.pay.Constants;
+package com.zhibinwang.pay.constant;
 
 /**
  * @author zhibin.wang

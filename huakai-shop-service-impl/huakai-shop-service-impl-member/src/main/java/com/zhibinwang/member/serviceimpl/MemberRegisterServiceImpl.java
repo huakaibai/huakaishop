@@ -11,13 +11,9 @@ import com.zhibinwang.member.feignclient.IVerRegCodeFeingClient;
 import com.zhibinwang.member.input.dto.UserInputDTO;
 import com.zhibinwang.member.mapper.UserMapper;
 import com.zhibinwang.member.service.IMemberRegisterService;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.validation.constraints.NotEmpty;
 
 /**
  * @author 花开
@@ -47,7 +43,7 @@ public class MemberRegisterServiceImpl extends BaseApiService<JSONObject>  imple
     // 手机号注册过获取不到验证吗
         UserDo userDo = userMapper.existMobile(userInputDTO.getMobile());
         if (userDo != null){
-            return setResultError(Constants.HTTP_RES_CODE_EXISTMOBILE_203,"手机号已经被注册");
+            return setResultError(constant.HTTP_RES_CODE_EXISTMOBILE_203,"手机号已经被注册");
         }*/
 
         String s = DigestUtil.md5Hex(userInputDTO.getPassword());

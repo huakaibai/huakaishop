@@ -523,7 +523,7 @@ public final class CronExpression implements Serializable, Cloneable {
             return i;
         }
         char c = s.charAt(i);
-        if ((c >= 'A') && (c <= 'Z') && (!s.equals("L")) && (!s.equals("LW")) && (!s.matches("^L-[0-9]*[W]?"))) {
+        if ((c >= 'A') && (c <= 'Z') && (!"L".equals(s)) && (!"LW".equals(s)) && (!s.matches("^L-[0-9]*[W]?"))) {
             String sub = s.substring(i, i + 3);
             int sval = -1;
             int eval = -1;
@@ -1133,7 +1133,7 @@ public final class CronExpression implements Serializable, Cloneable {
         return Integer.parseInt(val);
     }
 
-    protected int getMonthNumber(String s) {
+    protected Integer getMonthNumber(String s) {
         Integer integer = monthMap.get(s);
 
         if (integer == null) {
@@ -1143,7 +1143,7 @@ public final class CronExpression implements Serializable, Cloneable {
         return integer;
     }
 
-    protected int getDayOfWeekNumber(String s) {
+    protected Integer getDayOfWeekNumber(String s) {
         Integer integer = dayMap.get(s);
 
         if (integer == null) {

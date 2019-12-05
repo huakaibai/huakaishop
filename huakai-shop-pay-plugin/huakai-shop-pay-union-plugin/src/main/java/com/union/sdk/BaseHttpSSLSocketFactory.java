@@ -97,13 +97,16 @@ public class BaseHttpSSLSocketFactory extends SSLSocketFactory {
 		public MyX509TrustManager() {
 		}
 
+		@Override
 		public X509Certificate[] getAcceptedIssuers() {
 			return null;
 		}
 
+		@Override
 		public void checkClientTrusted(X509Certificate[] chain, String authType) {
 		}
 
+		@Override
 		public void checkServerTrusted(X509Certificate[] chain, String authType) {
 		}
 	}
@@ -112,6 +115,7 @@ public class BaseHttpSSLSocketFactory extends SSLSocketFactory {
 	 * 解决由于服务器证书问题导致HTTPS无法访问的情况 PS:HTTPS hostname wrong: should be <localhost>
 	 */
 	public static class TrustAnyHostnameVerifier implements HostnameVerifier {
+		@Override
 		public boolean verify(String hostname, SSLSession session) {
 			//直接返回true
 			return true;

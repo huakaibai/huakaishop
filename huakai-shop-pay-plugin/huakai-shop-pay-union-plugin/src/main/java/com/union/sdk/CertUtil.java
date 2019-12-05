@@ -597,7 +597,7 @@ public class CertUtil {
 		String tDN = aCert.getSubjectDN().toString(); 
 		String tPart = "";
 		if ((tDN != null)) {
-			String tSplitStr[] = tDN.substring(tDN.indexOf("CN=")).split("@");
+			String[] tSplitStr = tDN.substring(tDN.indexOf("CN=")).split("@");
 			if (tSplitStr != null && tSplitStr.length > 2
 					&& tSplitStr[2] != null)
 				tPart = tSplitStr[2];
@@ -755,6 +755,7 @@ public class CertUtil {
 				return false;
 			}
 		}
+		@Override
 		public boolean accept(File dir, String name) {
 			return isCer(name);
 		}
