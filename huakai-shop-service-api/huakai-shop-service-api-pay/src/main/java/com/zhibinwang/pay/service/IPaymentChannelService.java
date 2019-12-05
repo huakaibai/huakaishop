@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * @author zhibin.wang
- * @create 2019-11-25 10:17
+ * @create 2019-11-25
  * @desc 支付渠道信息接口
  **/
 @Api("支付渠道接口")

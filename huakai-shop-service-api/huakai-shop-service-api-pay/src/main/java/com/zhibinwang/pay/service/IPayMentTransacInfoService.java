@@ -18,7 +18,7 @@ import javax.validation.constraints.NotBlank;
 
 /**
  * @author zhibin.wang
- * @create 2019-11-25 9:25
+ * @create 2019-11-25
  * @desc 获取支付订单信息
  **/
 @Api("支付获取订单信息")

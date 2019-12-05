@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * @author zhibin.wang
- * @create 2019-11-25 9:27
+ * @create 2019-11-25
  * @desc 制定订单信息
  **/
 @Data

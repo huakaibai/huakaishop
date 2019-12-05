@@ -10,7 +10,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @author zhibin.wang
- * @create 2019-11-25 10:54
+ * @create 2019-11-25
  * @desc 支付web
  **/
 @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class,

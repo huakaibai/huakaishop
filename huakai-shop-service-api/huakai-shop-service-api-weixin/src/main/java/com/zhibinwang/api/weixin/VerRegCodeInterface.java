@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author 花开
- * @create 2019-10-30 19:46
+ * @create 2019-10-30
  * @desc 校验注册码
  **/
 @Api(tags = "微信校验注册码")

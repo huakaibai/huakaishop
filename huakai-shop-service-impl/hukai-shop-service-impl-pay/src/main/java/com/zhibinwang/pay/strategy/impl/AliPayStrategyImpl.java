@@ -21,7 +21,7 @@ import java.math.BigDecimal;
 
 /**
  * @author zhibin.wang
- * @create 2019-11-25 14:47
+ * @create 2019-11-25
  * @desc 阿里支付策略模式实现类
  * @link https://docs.open.alipay.com/api_1/alipay.trade.page.pay
  **/

@@ -5,7 +5,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 
 /**
  * @author zhibin.wang
- * @create 2019-11-25 11:07
+ * @create 2019-11-25
  * @desc 支付渠道feign接口
  **/
 @FeignClient("app-huakai-pay")

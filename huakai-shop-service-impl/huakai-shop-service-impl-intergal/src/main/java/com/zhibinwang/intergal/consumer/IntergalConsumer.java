@@ -20,7 +20,7 @@ import java.util.Map;
 
 /**
  * @author 花开
- * @create 2019-11-30 11:06
+ * @create 2019-11-30
  * @desc rabbitmq 消费者
  **/
 @Component

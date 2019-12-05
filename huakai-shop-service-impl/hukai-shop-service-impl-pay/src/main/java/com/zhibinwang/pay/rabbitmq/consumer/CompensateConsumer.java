@@ -24,7 +24,7 @@ import java.util.Map;
 
 /**
  * @author zhibin.wang
- * @create 2019-11-29 13:48
+ * @create 2019-11-29
  * @desc 支付订单补偿消费者,当收到mq消息说明，订单已经支付成功，1.可以防止网关重复提交，2.可以保证数据状态一致性
  **/
 @Component

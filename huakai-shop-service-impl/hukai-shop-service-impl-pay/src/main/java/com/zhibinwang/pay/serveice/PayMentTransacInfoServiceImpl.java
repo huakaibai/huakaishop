@@ -17,7 +17,7 @@ import javax.validation.constraints.NotBlank;
 
 /**
  * @author zhibin.wang
- * @create 2019-11-25 9:47
+ * @create 2019-11-25
  * @desc 支付订单信息实现接口
  **/
 @RestController

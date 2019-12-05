@@ -6,7 +6,7 @@ import lombok.Data;
 
 /**
  * @author zhibin.wang
- * @create 2019-11-25 10:12
+ * @create 2019-11-25
  * @desc 支付渠道详细信息
  **/
 @Data

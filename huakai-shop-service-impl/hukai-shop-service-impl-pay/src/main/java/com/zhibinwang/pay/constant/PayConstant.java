@@ -2,7 +2,7 @@ package com.zhibinwang.pay.constant;
 
 /**
  * @author zhibin.wang
- * @create 2019-11-27 15:39
+ * @create 2019-11-27
  * @desc 支付常量
  **/
 public interface PayConstant {

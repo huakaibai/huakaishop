@@ -5,7 +5,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 
 /**
  * @author zhibin.wang
- * @create 2019-11-18 15:39
+ * @create 2019-11-18
  * @desc
  **/
 @FeignClient("app-huakai-member")

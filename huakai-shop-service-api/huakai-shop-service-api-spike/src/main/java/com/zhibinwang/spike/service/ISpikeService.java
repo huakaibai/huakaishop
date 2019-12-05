@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * @author zhibin.wang
- * @create 2019-12-05 9:32
+ * @create 2019-12-05
  * @desc 秒杀服务
  **/
 @Api(tags = "秒杀服务接口")

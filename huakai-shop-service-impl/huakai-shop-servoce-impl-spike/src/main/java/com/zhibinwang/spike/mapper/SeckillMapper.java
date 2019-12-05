@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Update;
 
 /**
  * @author zhibin.wang
- * @create 2019-12-05 10:27
+ * @create 2019-12-05
  * @desc
  **/
 public interface SeckillMapper {

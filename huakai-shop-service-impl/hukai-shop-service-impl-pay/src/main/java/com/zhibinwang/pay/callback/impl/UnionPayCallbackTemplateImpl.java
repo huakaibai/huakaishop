@@ -18,7 +18,7 @@ import java.util.Map;
 
 /**
  * @author zhibin.wang
- * @create 2019-11-27 15:21
+ * @create 2019-11-27
  * @desc 银联异步回调通知接口
  **/
 @Slf4j

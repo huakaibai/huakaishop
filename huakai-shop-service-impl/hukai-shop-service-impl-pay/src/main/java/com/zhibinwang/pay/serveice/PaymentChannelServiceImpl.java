@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * @author zhibin.wang
- * @create 2019-11-25 10:21
+ * @create 2019-11-25
  * @desc 支付渠道实现类
  **/
 @RestController

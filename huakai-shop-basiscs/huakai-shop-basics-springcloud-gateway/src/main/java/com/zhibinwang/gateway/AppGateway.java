@@ -2,20 +2,11 @@ package com.zhibinwang.gateway;
 
 import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
-import springfox.documentation.swagger.web.SwaggerResource;
-import springfox.documentation.swagger.web.SwaggerResourcesProvider;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author 花开
- * @create 2019-10-23 20:48
+ * @create 2019-10-23
  * @desc
  **/
 @SpringCloudApplication

@@ -7,7 +7,7 @@ import com.zhibinwang.pay.entity.PaymentTransaction;
 
 /**
  * @author zhibin.wang
- * @create 2019-11-25 14:44
+ * @create 2019-11-25
  * @desc 支付策略模式接口类
  **/
 public interface PayStrategy {

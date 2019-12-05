@@ -16,7 +16,7 @@ import java.util.Date;
 
 /**
  * @author zhibin.wang
- * @create 2019-12-05 9:47
+ * @create 2019-12-05
  * @desc 秒杀服务实现类
  **/
 @RestController
