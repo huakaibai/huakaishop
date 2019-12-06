@@ -16,6 +16,12 @@
             <groupId>com.zhibinwang</groupId>
             <artifactId>huakai-shop-service-api-spike</artifactId>
         </dependency>
+
+        <!-- 添加springboot对amqp的支持 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

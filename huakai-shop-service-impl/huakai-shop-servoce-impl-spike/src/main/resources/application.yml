@@ -1,0 +1,63 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8100/eureka
+
+server:
+  port: 8600
+spring:
+  application:
+    name: app-huakai-spike
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3340/huakai_spike
+    username: root
+  rabbitmq:
+    ####连接地址
+    host: 127.0.0.1
+    ####端口号
+    port: 5672
+    ####账号
+    username: guest
+    ####密码
+    password: guest
+    ### 地址
+    virtual-host: /bus
+    listener:
+      simple:
+        retry:
+          ####开启消费者（程序出现异常的情况下会）进行重试
+          enabled: true
+          ####最大重试次数
+          max-attempts: 5
+          ####重试间隔时间
+          initial-interval: 1000
+        ####开启手动ack
+        acknowledge-mode: manual
+        default-requeue-rejected: false
+#security:
+#  oauth2:
+#    resource:
+#      ####从认证授权中心上验证token
+#      tokenInfoUri: http://localhost:8080/oauth/check_token
+#      preferTokenInfo: true
+#    client:
+#      accessTokenUri: http://localhost:8080/oauth/token
+#      userAuthorizationUri: http://localhost:8080/oauth/authorize
+#      ###appid
+#      clientId: client_1
+#      ###appSecret
+#      clientSecret: 123456
+
+#xxl:
+#  job:
+#    accessToken: ''
+#    admin:
+#      addresses: http://127.0.0.1:8080/xxl-job-admin
+#    executor:
+#      appname: xxl-job-executor-sample
+#      ip: ''
+#      logpath: /data/applogs/xxl-job/jobhandler
+#      logretentiondays: 30
+#      port: 9999

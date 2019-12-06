@@ -28,8 +28,24 @@ public interface ISpikeService {
             @ApiImplicitParam(paramType = "query", name = "phone", dataType = "String", required = true, value = "手机号"),
             @ApiImplicitParam(paramType = "query", name = "seckilld", dataType = "String", required = true, value = "秒杀商品id")
     })
-    @GetMapping("spike")
+    @GetMapping("/spike")
     BaseResponse<JSONObject> spike(@Phone String phone, @NotNull(message = "秒杀id不能为空") Long seckilld);
+
+    @ApiOperation(value = "生成秒杀token")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", name = "seckilld", dataType = "String", required = true, value = "秒杀商品id")
+    })
+    @GetMapping("/generateSeckillToken")
+    BaseResponse<JSONObject> generateSeckillToken(@NotNull(message = "秒杀id不能为空")String seckilId);
+
+
+    @ApiOperation(value = "查询秒杀结果")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", name = "phone", dataType = "String", required = true, value = "手机号"),
+            @ApiImplicitParam(paramType = "query", name = "seckilld", dataType = "String", required = true, value = "秒杀商品id")
+    })
+    @GetMapping("/querySeckillResult")
+    BaseResponse<JSONObject> querySeckillResult(String phone,String secKillId);
 
 
 

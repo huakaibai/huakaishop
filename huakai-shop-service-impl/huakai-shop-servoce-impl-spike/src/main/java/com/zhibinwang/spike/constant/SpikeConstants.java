@@ -9,5 +9,7 @@ public interface SpikeConstants {
 
     String KEY_PRIX = "spike_";
 
+    String TOKEN_PRIX = "token_";
+
     long KEY_TIME = 10;
 }

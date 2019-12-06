@@ -5,6 +5,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -47,6 +49,36 @@ public class GenerateToken {
 		String token = keyPrefix + UUID.randomUUID().toString().replace("-", "");
 		redisUtil.setString(token, redisValue, time);
 		return token;
+	}
+
+	/**
+	 * 生成商品库存令牌桶
+	 * @param key 前缀+商品id
+	 * @param num 商品库存数量
+	 * @param time 过期时间
+	 */
+	public void creteTokenBucket(String key,Integer num,Long time) throws Exception {
+		if (StringUtils.isEmpty(key)){
+			throw  new RuntimeException("key值为空");
+		}
+		List<String> list = new ArrayList<>();
+		for (int i = 0;i < num;i++){
+			list.add( UUID.randomUUID().toString().replace("-", ""));
+		}
+
+		redisUtil.setList(key,list,time);
+
+	}
+
+	/**
+	 * 获取令牌桶
+	 * @param key 关键字
+	 * @return
+	 */
+	public String getTokenBucket(String key){
+
+		return redisUtil.getAndDelList(key);
+
 	}
 
 	/**

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -36,10 +37,33 @@ public class RedisUtil {
 		}
 
 	}
+
+	/**
+	 * 存放list
+	 * @param key
+	 * @param list
+	 * @param timeOut
+	 */
+	public void setList(String key, List list,Long timeOut){
+		stringRedisTemplate.opsForList().leftPushAll(key,list);
+		if (timeOut != null){
+			stringRedisTemplate.expire(key,timeOut,TimeUnit.SECONDS);
+		}
+	}
+
+	/**
+	 * 获取和删除list的值
+	 * @param key
+	 * @return
+	 */
+	public String getAndDelList(String key){
+		return   stringRedisTemplate.opsForList().leftPop(key);
+	}
+
 	/**
 	 * 开启Redis 事务
 	 *
-	 * @param isTransaction
+	 * @param
 	 */
 	public void begin() {
 		// 开启Redis 事务权限
