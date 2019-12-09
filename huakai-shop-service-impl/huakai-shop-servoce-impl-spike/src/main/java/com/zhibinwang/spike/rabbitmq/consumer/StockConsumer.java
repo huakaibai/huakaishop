@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.rabbitmq.client.Channel;
 import com.zhibinwang.spike.entity.HuakaiSeckill;
 import com.zhibinwang.spike.entity.HukaiOrder;
+import com.zhibinwang.spike.mapper.OrderMapper;
 import com.zhibinwang.spike.mapper.SeckillMapper;
 import com.zhibinwang.spike.rabbitmq.config.RabbitmqConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -31,13 +32,17 @@ public class StockConsumer {
     @Autowired
     private SeckillMapper seckillMapper;
 
+
+    @Autowired
+    private OrderMapper orderMapper;
+
     /**
      * concurrency =  "10" 在注解中，这里可以采用消费者并发
      * @param message
      * @param headers
      * @param channel
      */
-    @RabbitListener(queues = RabbitmqConfig.MODIFY_EXCHANGE_NAME)
+    @RabbitListener(queues = RabbitmqConfig.MODIFY_INVENTORY_QUEUE)
     @Transactional(rollbackFor = Exception.class)
     public void updateRepertorys(Message message, @Headers Map<String, Object> headers, Channel channel) throws IOException {
         String messageId = message.getMessageProperties().getMessageId();
@@ -68,8 +73,8 @@ public class StockConsumer {
         hukaiOrder.setCreateTime(new Date());
         //状态标示:-1:无效 0:成功 1:已付款 2:已发货
         hukaiOrder.setState((byte)1);
-
-        if (true){
+        int i = orderMapper.insertOrder(hukaiOrder);
+        if (i > 0){
             // 消费成功后手动确认
             basicNack(message,channel);
         }

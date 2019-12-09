@@ -9,7 +9,9 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -29,7 +31,7 @@ public interface ISpikeService {
             @ApiImplicitParam(paramType = "query", name = "seckilld", dataType = "String", required = true, value = "秒杀商品id")
     })
     @GetMapping("/spike")
-    BaseResponse<JSONObject> spike(@Phone String phone, @NotNull(message = "秒杀id不能为空") Long seckilld);
+    BaseResponse<JSONObject> spike(@Phone String phone, @RequestParam("seckilld") @NotBlank(message = "秒杀id不能为空") String seckilld);
 
     @ApiOperation(value = "生成秒杀token")
     @ApiImplicitParams({

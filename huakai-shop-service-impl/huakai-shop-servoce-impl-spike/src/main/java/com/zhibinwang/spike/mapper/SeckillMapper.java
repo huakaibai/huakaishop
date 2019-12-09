@@ -1,6 +1,7 @@
 package com.zhibinwang.spike.mapper;
 
 import com.zhibinwang.spike.entity.HuakaiSeckill;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -25,6 +26,6 @@ public interface SeckillMapper {
      * @param version
      * @return
      */
-    @Update("update huakai_seckill set inventory=inventory-1 ,version=version-1 WHERE seckill_id = #{id} and version = #{version} and inventory > 0  ")
-    int updateSeckill(Long id,Long version);
+    @Update("update huakai_seckill set inventory=inventory-1 ,version=version+1 WHERE seckill_id = #{id} and version = #{version} and inventory > 0  ")
+    int updateSeckill(@Param(value = "id") Long id, @Param(value = "version") Long version);
 }

@@ -47,7 +47,7 @@ public class SpikeComodityProducer implements RabbitTemplate.ConfirmCallback {
         //设置confirmcallback实现类 发送确认
         rabbitTemplate.setConfirmCallback(this);
         CorrelationData correlationData = new CorrelationData(jsonString);
-        rabbitTemplate.convertAndSend(RabbitmqConfig.MODIFY_INVENTORY_QUEUE, RabbitmqConfig.MODIFY_ROUTING_KEY, message, correlationData);
+        rabbitTemplate.convertAndSend(RabbitmqConfig.MODIFY_EXCHANGE_NAME, RabbitmqConfig.MODIFY_ROUTING_KEY, message, correlationData);
     }
 
     @Override

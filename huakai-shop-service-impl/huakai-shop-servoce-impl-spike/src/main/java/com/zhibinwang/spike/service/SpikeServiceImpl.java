@@ -9,6 +9,8 @@ import com.zhibinwang.core.token.GenerateToken;
 import com.zhibinwang.core.utils.RedisUtil;
 import com.zhibinwang.spike.constant.SpikeConstants;
 import com.zhibinwang.spike.entity.HuakaiSeckill;
+import com.zhibinwang.spike.entity.HukaiOrder;
+import com.zhibinwang.spike.mapper.OrderMapper;
 import com.zhibinwang.spike.mapper.SeckillMapper;
 import com.zhibinwang.spike.rabbitmq.producer.SpikeComodityProducer;
 import lombok.extern.slf4j.Slf4j;
@@ -41,16 +43,16 @@ public class SpikeServiceImpl extends BaseApiService<JSONObject> implements  ISp
     private SpikeComodityProducer spikeComodityProducer;
 
 
+    @Autowired
+    private OrderMapper orderMapper;
+
+
     @Override
     @HystrixCommand(fallbackMethod = "generateTokenForSkill",commandProperties = {
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "5000"), //服务调用超时时间
             @HystrixProperty(name = "execution.isolation.strategy ",value = "Thread") //HystrixCommand隔离级别：Thread表示重新开始一个线程执行回滚；Semaphore表示在当前调用线程执行回滚
-    },threadPoolProperties = {
-            @HystrixProperty(name = "coreSize",value = "1"),
-            @HystrixProperty(name = "maxQueueSize",value = "10")
     })
-
-    public BaseResponse<JSONObject> spike(String phone,  Long seckilld) {
+    public BaseResponse<JSONObject> spike(String phone,  String seckilld) {
         // 设置防止连续秒杀，10s后再来
 /*        Boolean aBoolean = redisUtil.setIfAbsent(SpikeConstants.KEY_PRIX + phone, seckilld+"", SpikeConstants.KEY_TIME);
         if (aBoolean){
@@ -67,7 +69,7 @@ public class SpikeServiceImpl extends BaseApiService<JSONObject> implements  ISp
         }
         //异步发送mq修改库存
         asyncSendMq(phone,seckilld+"",tokenBucket);
-        return setResultSuccess("秒杀成功");
+        return setResultSuccess("正在排队中...");
     }
 
     @Override
@@ -88,8 +90,10 @@ public class SpikeServiceImpl extends BaseApiService<JSONObject> implements  ISp
 
     @Override
     public BaseResponse<JSONObject> querySeckillResult(String phone, String secKillId) {
-        //1.先根据手机号和秒杀号，查询是否有记录； TODO
-
+        HukaiOrder byOrder = orderMapper.findByOrder(phone, Long.parseLong(secKillId));
+        if (byOrder != null){
+            return setResultSuccess("秒杀成功");
+        }
         //2.没有记录，查询库存是否为0
         HuakaiSeckill seckill = seckillMapper.findById(Long.parseLong(secKillId));
         if (seckill == null){
