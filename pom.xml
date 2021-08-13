@@ -42,7 +42,7 @@
         <myatis-springboot.version>1.1.1</myatis-springboot.version>
         <orika.version>1.5.2</orika.version>
         <alipaysdk.version>4.8.62.ALL</alipaysdk.version>
-        <bcprov-jdk15on.version>1.54</bcprov-jdk15on.version>
+        <bcprov-jdk15on.version>1.67</bcprov-jdk15on.version>
         <huakai-shop-common-core.version>1.0-SNAPSHOT</huakai-shop-common-core.version>
         <huakai-shop-web-common.version>1.0-SNAPSHOT</huakai-shop-web-common.version>
         <huakai-shop-service-api-goods.version>1.0-SNAPSHOT</huakai-shop-service-api-goods.version>
